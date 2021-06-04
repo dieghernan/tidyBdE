@@ -95,7 +95,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="tidyBdE-logo" id="ROS-navbar-logo">tidyBdE</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="tidyBdE-logo" id="ROS-navbar-logo">tidyBdE</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -105,6 +105,9 @@
     <span class="fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/tidyBdE.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -188,65 +191,41 @@ the search.</p>
 <span class='co'># !! PIB [es] == GDP [en]</span>
 
 <span class='va'>PIB</span> <span class='op'>&lt;-</span> <span class='fu'>bde_catalog_search</span><span class='op'>(</span><span class='st'>"PIB"</span>, catalog <span class='op'>=</span> <span class='st'>"IE"</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='message'>tidyBdE&gt; URL </span>
+#&gt; <span class='message'> https://www.bde.es/webbde/es/estadis/infoest/series/catalogo_ie.csv</span>
+#&gt; <span class='message'>not reachable.</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>If you think this is a bug consider opening an issue</span></div><div class='output co'>#&gt; <span class='error'>Error: tidyBdE&gt; Execution halted.</span></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>PIB</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; [1] "Numero_secuencial"       "Alias_de_la_serie"      
-#&gt; [3] "Descripcion_de_la_serie"</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'PIB' not found</span></div><div class='input'>
 <span class='va'>PIB</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 23 x 3</span><span>
-#&gt;    Numero_secuencial Alias_de_la_ser… Descripcion_de_la_serie                   
-#&gt;                </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                     
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>           3</span><span style='text-decoration: underline;'>778</span><span>071 IE_1_1.1         </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. PIB pm. \xcdndice de vol…
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>           2</span><span style='text-decoration: underline;'>665</span><span>112 IE_1_1.2         </span><span style='color: #949494;'>"</span><span>Econom\xeda internacional. UEM. PIB. Pre…
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>           3</span><span style='text-decoration: underline;'>777</span><span>277 IE_1_1.15        </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. PIB pm. Precios corrient…
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>           2</span><span style='text-decoration: underline;'>665</span><span>149 IE_1_1.16        </span><span style='color: #949494;'>"</span><span>Econom\xeda internacional. UEM. PIB. Pre…
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>           3</span><span style='text-decoration: underline;'>778</span><span>130 IE_1_2.6         </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. Variaci\xf3n de existenc…
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>           3</span><span style='text-decoration: underline;'>778</span><span>080 IE_1_2.15        </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. Demanda nacional. \xcdnd…
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>           3</span><span style='text-decoration: underline;'>779</span><span>313 IE_1_2.16        </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. PIB pm. \xcdndice de vol…
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>           3</span><span style='text-decoration: underline;'>779</span><span>313 IE_1_3.1         </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. PIB pm. \xcdndice de vol…
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>           3</span><span style='text-decoration: underline;'>779</span><span>197 IE_1_4.9         </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. PIB pm. Deflactor. Datos…
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>           1</span><span style='text-decoration: underline;'>961</span><span>502 IE_2_1.1         </span><span style='color: #949494;'>"</span><span>Econom\xeda internacional. OCDE TOTAL. P…
-#&gt; </span><span style='color: #949494;'># … with 13 more rows</span><span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'PIB' not found</span></div><div class='input'>
 <span class='co'># More complex - Single</span>
 <span class='va'>FRA_PIB</span> <span class='op'>&lt;-</span> <span class='fu'>bde_catalog_search</span><span class='op'>(</span><span class='st'>"Francia(.*)PIB"</span>, catalog <span class='op'>=</span> <span class='st'>"IE"</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='error'>Error in read.table(file = file, header = header, sep = sep, quote = quote,     dec = dec, fill = fill, comment.char = comment.char, ...): no lines available in input</span></div><div class='input'>
 <span class='va'>FRA_PIB</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 3</span><span>
-#&gt;   Numero_secuencial Alias_de_la_ser… Descripcion_de_la_serie                    
-#&gt;               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                      
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>            </span><span style='text-decoration: underline;'>304</span><span>740 IE_2_1.6         </span><span style='color: #949494;'>"</span><span>Econom\xeda internacional. Francia. PIB. …</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'FRA_PIB' not found</span></div><div class='input'>
 <span class='co'># Even more complex - Double</span>
 <span class='va'>FRA_ITA_DEU_PIB</span> <span class='op'>&lt;-</span>
   <span class='fu'>bde_catalog_search</span><span class='op'>(</span><span class='st'>"Francia(.*)PIB|Italia(.*)PIB|Alemania(.*)PIB"</span>,
     catalog <span class='op'>=</span> <span class='st'>"IE"</span>
   <span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='error'>Error in read.table(file = file, header = header, sep = sep, quote = quote,     dec = dec, fill = fill, comment.char = comment.char, ...): no lines available in input</span></div><div class='input'>
 <span class='va'>FRA_ITA_DEU_PIB</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 3</span><span>
-#&gt;   Numero_secuencial Alias_de_la_ser… Descripcion_de_la_serie                    
-#&gt;               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                      
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>            </span><span style='text-decoration: underline;'>400</span><span>130 IE_2_1.5         </span><span style='color: #949494;'>"</span><span>Econom\xeda internacional. Alemania. PIB.…
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>            </span><span style='text-decoration: underline;'>304</span><span>740 IE_2_1.6         </span><span style='color: #949494;'>"</span><span>Econom\xeda internacional. Francia. PIB. …
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>            </span><span style='text-decoration: underline;'>304</span><span>741 IE_2_1.8         </span><span style='color: #949494;'>"</span><span>Econom\xeda internacional. Italia. PIB. P…</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'FRA_ITA_DEU_PIB' not found</span></div><div class='input'>
 <span class='co'># Search an alias: Exact match</span>
 <span class='fu'>bde_catalog_search</span><span class='op'>(</span><span class='st'>"^IE_1_1.1$"</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 3</span><span>
-#&gt;   Numero_secuencial Alias_de_la_ser… Descripcion_de_la_serie                    
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                      
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 3778071           IE_1_1.1         </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. PIB pm. \xcdndice de volu…</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>tidyBdE&gt; URL </span>
+#&gt; <span class='message'> https://www.bde.es/webbde/es/estadis/infoest/series/catalogo_be.csv</span>
+#&gt; <span class='message'>not reachable.</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>If you think this is a bug consider opening an issue</span></div><div class='output co'>#&gt; <span class='error'>Error: tidyBdE&gt; Execution halted.</span></div><div class='input'>
 <span class='co'># Search a sequential code: Exact match</span>
 <span class='co'># Note that this series (sequential code) appears on several tables</span>
 
 <span class='fu'>bde_catalog_search</span><span class='op'>(</span><span class='st'>"^3779313$"</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 3</span><span>
-#&gt;   Numero_secuencial Alias_de_la_ser… Descripcion_de_la_serie                    
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                      
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 3779313           BE_2_1.19        </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. PIB pm. \xcdndice de volu…
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 3779313           IE_1_2.16        </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. PIB pm. \xcdndice de volu…
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 3779313           IE_1_3.1         </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. PIB pm. \xcdndice de volu…
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 3779313           IE_2_1.4         </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. PIB pm. \xcdndice de volu…
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 3779313           SI_2_1.54        </span><span style='color: #949494;'>"</span><span>CNE. Base 2016. PIB pm. \xcdndice de volu…</div><div class='input'><span class='co'># }</span>
-</div></span></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in read.table(file = file, header = header, sep = sep, quote = quote,     dec = dec, fill = fill, comment.char = comment.char, ...): no lines available in input</span></div><div class='input'><span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
