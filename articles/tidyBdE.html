@@ -45,7 +45,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="tidyBdE-logo" id="ROS-navbar-logo">tidyBdE</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="tidyBdE-logo" id="ROS-navbar-logo">tidyBdE</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.9000</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -61,6 +61,21 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/articles/Main_Macroeconomic_Series.html">Main Macroeconomic Series</a>
+    </li>
+    <li>
+      <a href="../articles/articles/Series-Index.html">Series Index</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -200,7 +215,7 @@
   <span class="fu">summarise_at</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="op">-</span><span class="fu">group_cols</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="va">sum</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># Create percentage</span>
   <span class="fu">relocate</span><span class="op">(</span><span class="va">Total</span>, .after <span class="op">=</span> <span class="va">Other</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="va">Agriculture</span><span class="op">:</span><span class="va">Other</span>, <span class="op">~</span> <span class="va">.x</span> <span class="op">/</span> <span class="va">Total</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="va">Agriculture</span><span class="op">:</span><span class="va">Other</span>, <span class="op">~</span> <span class="va">.x</span> <span class="op">*</span> <span class="fl">100</span> <span class="op">/</span> <span class="va">Total</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># Move cols to rows for plotting</span>
   <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">Total</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_longer</span><span class="op">(</span><span class="va">Agriculture</span><span class="op">:</span><span class="va">Other</span>,
