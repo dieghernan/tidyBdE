@@ -28,7 +28,11 @@
     the supervisor of the Spanish banking system along with the European
     Central Bank. This package is in no way sponsored endorsed or
     administered by Banco de España.">
-<meta property="og:image" content="https://ropenspain.github.io/tidyBdE/logo.png">
+<meta property="og:image" content="https://ropenspain.github.io/tidyBdE/reference/figures/README-chart-1.png">
+<meta property="og:image:alt" content="tidyBdE R package">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@dhernangomez">
+<meta name="twitter:site" content="@rOpenSpain">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -50,7 +54,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="index.html"><img src="logo.png" alt="tidyBdE-logo" id="ROS-navbar-logo">tidyBdE</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.9011</span>
+      <a class="navbar-link ROS-black" href="index.html"><img src="logo.png" alt="tidyBdE-logo" id="ROS-navbar-logo">tidyBdE</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -78,7 +82,7 @@
       <a href="articles/articles/Main_Macroeconomic_Series.html">Main Macroeconomic Series</a>
     </li>
     <li>
-      <a href="articles/articles/Series-Index.html">Series Index</a>
+      <a href="articles/articles/Series_Index.html">Series Index</a>
     </li>
   </ul>
 </li>
@@ -143,24 +147,50 @@
 <code class="sourceCode R">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/tidyBdE/">tidyBdE</a></span><span class="op">)</span>
 
+<span class="co"># Load tidyverse for better handling</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+
 <span class="co"># Search GBP on "TC" (exchange rate) catalog</span>
 <span class="va">XR_GBP</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bde_catalog_search.html">bde_catalog_search</a></span><span class="op">(</span><span class="st">"GBP"</span>, catalog <span class="op">=</span> <span class="st">"TC"</span><span class="op">)</span>
 
-<span class="va">XR_GBP</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 1 x 2</span>
-<span class="co">#&gt;   Numero_secuencial Descripcion_de_la_serie                                     </span>
-<span class="co">#&gt;               &lt;dbl&gt; &lt;chr&gt;                                                       </span>
-<span class="co">#&gt; 1            573214 Tipo de cambio. Libras esterlinas por euro (GBP/EUR).Datos ~</span></code></pre></div>
+<span class="va">XR_GBP</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">Numero_secuencial</span>, <span class="va">Descripcion_de_la_serie</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># To table on document</span>
+  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="right">Numero_secuencial</th>
+<th align="left">Descripcion_de_la_serie</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">573214</td>
+<td align="left">Tipo de cambio. Libras esterlinas por euro (GBP/EUR).Datos diarios</td>
+</tr></tbody>
+</table>
 <p><strong>Note that BdE files are only provided in Spanish, for the time being</strong>, the organism is working on the English version. By now, search terms should be provided in Spanish in order to get search results.</p>
 <p>After we have found our series, we can load the series for the GBP/EUR exchange rate using the sequential number reference (<code>Numero_Secuencial</code>) as:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="co"># Load tidyverse for better handling</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
-<span class="va">time_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bde_series_load.html">bde_series_load</a></span><span class="op">(</span><span class="fl">573214</span>, series_label <span class="op">=</span> <span class="st">"EUR_GBP_XR"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">seq_number</span> <span class="op">&lt;-</span> <span class="va">XR_GBP</span> <span class="op">%&gt;%</span>
+  <span class="co"># First record</span>
+  <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># Get id</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">Numero_secuencial</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># Convert to num</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="op">)</span>
+
+
+<span class="va">seq_number</span>
+<span class="co">#&gt; [1] 573214</span>
+
+<span class="va">time_series</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bde_series_load.html">bde_series_load</a></span><span class="op">(</span><span class="va">seq_number</span>, series_label <span class="op">=</span> <span class="st">"EUR_GBP_XR"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Date</span> <span class="op">&gt;=</span> <span class="st">"2010-01-01"</span> <span class="op">&amp;</span> <span class="va">Date</span> <span class="op">&lt;=</span> <span class="st">"2020-12-31"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="plots" class="section level3">
+<h3 class="hasAnchor">
+<a href="#plots" class="anchor"></a>Plots</h3>
 <p>The package also provides a custom <code>ggplot2</code> theme based on the publications of BdE:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -208,20 +238,20 @@
   <span class="fu"><a href="reference/theme_bde.html">theme_bde</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="reference/scales_bde.html">scale_color_bde_d</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"bde_vivid_pal"</span><span class="op">)</span> <span class="co"># Custom palette on the package</span></code></pre></div>
 <p><img src="reference/figures/README-macroseries-1.png" width="100%"></p>
+</div>
+<div id="palettes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#palettes" class="anchor"></a>Palettes</h3>
 <p>Two custom palettes, based on the used by BdE on some publications are available.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="va">opar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>no.readonly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html">show_col</a></span><span class="op">(</span><span class="fu"><a href="reference/bde_pals.html">bde_rose_pal</a></span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op">(</span><span class="st">"bde_rose_pal()"</span><span class="op">)</span>
-<span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html">show_col</a></span><span class="op">(</span><span class="fu"><a href="reference/bde_pals.html">bde_vivid_pal</a></span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op">(</span><span class="st">"bde_vivid_pal()"</span><span class="op">)</span></code></pre></div>
+<span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html">show_col</a></span><span class="op">(</span><span class="fu"><a href="reference/bde_pals.html">bde_rose_pal</a></span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-palettes-1.png" width="100%"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="va">opar</span><span class="op">)</span></code></pre></div>
+<span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html">show_col</a></span><span class="op">(</span><span class="fu"><a href="reference/bde_pals.html">bde_vivid_pal</a></span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-palettes-2.png" width="100%"></p>
 <p>Those palettes can be applied to a <code>ggplot2</code> using some custom utils included on the package (see <code><a href="reference/scales_bde.html">help("scale_color_bde_d", package = "tidyBdE")</a></code>).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load GDP Series</span>
@@ -289,6 +319,7 @@
     caption <span class="op">=</span> <span class="st">"Source: BdE"</span>
   <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-gdp-1.png" width="100%"></p>
+</div>
 <div id="a-note-on-caching" class="section level3">
 <h3 class="hasAnchor">
 <a href="#a-note-on-caching" class="anchor"></a>A note on caching</h3>
@@ -331,9 +362,9 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite tidyBdE in publications use:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Herrero, D. H. (2021). tidyBdE: Download Data from Bank of Spain. R</span>
-<span class="co">#&gt;   package version 0.1.2.9010. https://doi.org/10.5281/zenodo.4673496.</span>
-<span class="co">#&gt;   Package url: https://CRAN.R-project.org/package=tidyBdE</span>
+<span class="co">#&gt;   Herrero, D. H. (2021). tidyBdE: Download Data from Bank of Spain.</span>
+<span class="co">#&gt;   https://doi.org/10.5281/zenodo.4673496. Package url:</span>
+<span class="co">#&gt;   https://CRAN.R-project.org/package=tidyBdE</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
 <span class="co">#&gt; </span>
@@ -341,7 +372,6 @@
 <span class="co">#&gt;     title = {tidyBdE: Download Data from Bank of Spain},</span>
 <span class="co">#&gt;     author = {D. H. Herrero},</span>
 <span class="co">#&gt;     year = {2021},</span>
-<span class="co">#&gt;     note = {R package version 0.1.2.9010},</span>
 <span class="co">#&gt;     doi = {10.5281/zenodo.4673496},</span>
 <span class="co">#&gt;     url = {https://CRAN.R-project.org/package=tidyBdE},</span>
 <span class="co">#&gt;   }</span></code></pre></div>
