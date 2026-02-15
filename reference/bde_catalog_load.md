@@ -80,9 +80,9 @@ Other catalog:
 ``` r
 # \donttest{
 bde_catalog_load("TI", verbose = TRUE)
-#> tidyBdE> Caching on temporary directory /tmp/RtmpRCd8FP
+#> tidyBdE> Caching on temporary directory /tmp/RtmpSQsn6n
 #> tidyBdE> Need to download catalog TI
-#> tidyBdE> Cache dir is /tmp/RtmpRCd8FP
+#> tidyBdE> Cache dir is /tmp/RtmpSQsn6n
 #> tidyBdE> Updating catalogs: TI
 #> tidyBdE> Downloading file from https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/catalogo_ti.csv
 #> 
