@@ -6,5 +6,5 @@
   Series](https://ropenspain.github.io/tidyBdE/articles/Main_Macroeconomic_Series.md):
 - [Series
   Index](https://ropenspain.github.io/tidyBdE/articles/Series_Index.md):
-- [Get Started with
+- [Get started with
   tidyBdE](https://ropenspain.github.io/tidyBdE/articles/tidyBdE.md):

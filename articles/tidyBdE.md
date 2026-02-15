@@ -1,4 +1,4 @@
-# Get Started with tidyBdE
+# Get started with tidyBdE
 
 **tidyBdE** is an API package that helps to retrieve data from [Banco de
 España](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.html).
@@ -89,7 +89,7 @@ ggplot(time_series, aes(x = Date, y = EUR_GBP_XR)) +
   theme_tidybde()
 ```
 
-![EUR/GBP Exchange Rate (2010-2020)](chart-1.png)
+![EUR/GBP Exchange Rate (2010-2020)](./chart-1.png)
 
 EUR/GBP Exchange Rate (2010-2020)
 
@@ -118,7 +118,7 @@ ggplot(plotseries, aes(x = Date, y = serie_value)) +
   scale_color_bde_d(palette = "bde_vivid_pal") # Custom palette on the package
 ```
 
-![Spanish Economic Indicators (2010-2019)](macroseries-1.png)
+![Spanish Economic Indicators (2010-2019)](./macroseries-1.png)
 
 Spanish Economic Indicators (2010-2019)
 
