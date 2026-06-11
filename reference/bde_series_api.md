@@ -152,9 +152,11 @@ xr |>
 xr |>
   slice_head(n = 1) |>
   pull(Nombre_de_la_serie) |>
-  bde_series_api_load(language = "en", time_range = "30M") |>
+  bde_series_api_load(language = "en", time_range = "12M") |>
   glimpse()
-#> Error in bde_hlp_api_check_range(series_alias = series_alias, language = language,     time_range = time_range, verbose = verbose): `time_range` "30M" is not valid for series frequency "D".
-#> ℹ Invalid series: "DTCCBCEUSDEUR.B".
+#> Error in tibble::tibble(Date = meta$fechas[[i]], serie_name = meta$serie_name[i],     serie_value = meta$valores[[i]]): Tibble columns must have compatible sizes.
+#> • Size 262: Existing data.
+#> • Size 256: Column `serie_value`.
+#> ℹ Only values of size one are recycled.
 # }
 ```
