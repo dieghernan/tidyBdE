@@ -1,19 +1,24 @@
-# Parse dates
+# Parse dates from strings
 
-This function is tailored for the date formatting used in this package,
-so it may fail if used with other datasets. See **Examples** for
-checking which formats would be considered.
+Parse strings representing dates with
+[`as.Date()`](https://rdrr.io/r/base/as.Date.html). This function is
+tailored to date formats used in this package and may fail with other
+datasets. See **Examples** for formats that are supported.
 
-### Date Formats
+### Date formats
 
-|                          |                                                                                                                             |                                                     |
-|--------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| **FREQUENCY**            | **FORMAT**                                                                                                                  | **EXAMPLES**                                        |
-| **Daily / Business day** | DD MMMMYYYY                                                                                                                 | *02 FEB2019*                                        |
-| **Monthly**              | MMM YYYY                                                                                                                    | *MAR 2020*                                          |
-| **Quarterly**            | MMM YYYY, where MMM is the first or the last month of the quarter, depending on the value of its variable OBSERVED.         | For the first quarter of 2020: *ENE 2020, MAR 2020* |
-| **Half-yearly**          | MMM YYYY, where MMM is the first or the last month of the halfyear period, depending on the value of its variable OBSERVED. | For the first half of 2020: *ENE 2020, JUN 2020*    |
-| **Annual**               | YYYY                                                                                                                        | *2020*                                              |
+|  |  |  |
+|----|----|----|
+| **FREQUENCY** | **FORMAT** | **EXAMPLES** |
+| **Daily / Business day** | `DD MMMMYYYY` | `02 FEB2019` |
+| **Monthly** | `MMM YYYY` | `MAR 2020` |
+| **Quarterly** | `MMM YYYY`, where `MMM` is the first or the last month of the quarter, depending on the value of its variable OBSERVED. | For the first quarter of 2020: `ENE 2020`, `MAR 2020` |
+| **Half-yearly** | `MMM YYYY`, where `MMM` is the first or the last month of the half-year period, depending on the value of its variable OBSERVED. | For the first half of 2020: `ENE 2020`, `JUN 2020` |
+| **Annual** | `YYYY` | `2020` |
+
+See
+[`vignette("csv_manual", package = "tidyBdE")`](https://ropenspain.github.io/tidyBdE/articles/csv_manual.md)
+for details.
 
 ## Usage
 
@@ -25,16 +30,11 @@ bde_parse_dates(dates_to_parse)
 
 - dates_to_parse:
 
-  Dates to parse
+  Character vector of dates to parse.
 
 ## Value
 
-A [`Date`](https://rdrr.io/r/base/as.Date.html) object.
-
-## Details
-
-Tries to parse strings representing dates using
-[`as.Date()`](https://rdrr.io/r/base/as.Date.html)
+A vector of [`Date`](https://rdrr.io/r/base/as.Date.html) values.
 
 ## See also
 
@@ -43,7 +43,7 @@ Tries to parse strings representing dates using
 ## Examples
 
 ``` r
-# Formats parsed
+# Supported formats.
 would_parse <- c(
   "02 FEB2019", "15 ABR 1890", "MAR 2020", "ENE2020",
   "2020", "12-1993", "01-02-2014", "01/02/1990"
@@ -67,9 +67,8 @@ tibble::tibble(raw = would_parse, parsed = parsed_ok)
 #> 7 01-02-2014  2014-02-01
 #> 8 01/02/1990  1990-02-01
 
-#-----------------------------------
+# Unsupported formats.
 
-# Formats not admitted
 wont_parse <- c("JAN2001", "2010-01-12", "01 APR 2017", "01/31/1990")
 
 parsed_fail <- bde_parse_dates(wont_parse)

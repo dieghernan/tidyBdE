@@ -1,7 +1,7 @@
 # BdE color palettes
 
-Custom palettes based on the publications of BdE. These are manual
-palettes with a maximum of 6 colors.
+Manually defined palettes based on BdE publications. Each palette
+contains at most six colors.
 
 ## Usage
 
@@ -18,7 +18,7 @@ bde_tidy_palettes(
 
 - n:
 
-  The number of colors (`>= 1`) in the palette.
+  The number of colors (`>= 1`) to return.
 
 - palette:
 
@@ -26,20 +26,18 @@ bde_tidy_palettes(
 
 - alpha:
 
-  An alpha-transparency level in the range `[0,1]` (`0` means
-  transparent and `1` means opaque). A missing, i.e., `alpha = NULL`,
-  does not add opacity codes (`"FF"`) to the individual color hex codes.
-  See
-  [`ggplot2::alpha()`](https://ggplot2.tidyverse.org/reference/reexports.html).
+  Alpha transparency level in the range `[0, 1]`, where `0` is
+  transparent and `1` is opaque. If `alpha = NULL`, the function does
+  not append opacity codes (`"FF"`) to individual color hex codes. See
+  [`ggplot2::alpha()`](https://scales.r-lib.org/reference/alpha.html).
 
 - rev:
 
-  Logical indicating whether the ordering of the colors should be
-  reversed.
+  Logical indicating whether to reverse the color order.
 
 ## Value
 
-A vector of colors.
+A character vector of hex color codes.
 
 ## See also
 
@@ -50,19 +48,19 @@ Other bde_plot:
 ## Examples
 
 ``` r
-# BdE vivid pal
+# Show the BdE vivid palette.
 scales::show_col(bde_tidy_palettes(palette = "bde_vivid_pal"),
   labels = FALSE
 )
 
 
-# BdE rose pal
+# Show the BdE rose palette.
 scales::show_col(bde_tidy_palettes(palette = "bde_rose_pal"),
   labels = FALSE
 )
 
 
-# BdE qual pal
+# Show the BdE qualitative palette.
 scales::show_col(bde_tidy_palettes(palette = "bde_qual_pal"),
   labels = FALSE
 )

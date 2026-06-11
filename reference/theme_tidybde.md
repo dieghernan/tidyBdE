@@ -1,7 +1,7 @@
-# BdE [ggplot2](https://CRAN.R-project.org/package=ggplot2) theme
+# BdE ggplot2 theme
 
-A custom [ggplot2](https://CRAN.R-project.org/package=ggplot2) theme
-based on the publications of BdE.
+Custom [ggplot2](https://CRAN.R-project.org/package=ggplot2) theme based
+on BdE publications.
 
 ## Usage
 
@@ -45,12 +45,11 @@ theme_tidybde(...)
 
 ## Value
 
-A [ggplot2](https://CRAN.R-project.org/package=ggplot2)
-[`theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
+A [ggplot2](https://CRAN.R-project.org/package=ggplot2) theme object.
 
 ## Details
 
-Theme based on
+This theme is based on
 [`ggplot2::theme_classic()`](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 
 ## See also
@@ -67,19 +66,11 @@ Other bde_plot:
 # \donttest{
 library(ggplot2)
 library(dplyr)
-#> 
-#> Attaching package: ‘dplyr’
-#> The following objects are masked from ‘package:stats’:
-#> 
-#>     filter, lag
-#> The following objects are masked from ‘package:base’:
-#> 
-#>     intersect, setdiff, setequal, union
 library(tidyr)
 
 series_TC <- bde_series_full_load("TC_1_1.csv")
 
-# If download was OK then plot
+# Plot if the download succeeds.
 if (nrow(series_TC) > 0) {
   series_TC <- series_TC[c(1, 2)]
 

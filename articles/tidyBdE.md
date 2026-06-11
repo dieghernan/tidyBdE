@@ -1,73 +1,94 @@
 # Get started with tidyBdE
 
-**tidyBdE** is an API package that helps to retrieve data from [Banco de
-España](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.html).
-The data is returned as a [tibble](https://tibble.tidyverse.org/), and
-the package automatically infers the format of each time-series (dates,
-characters, and numbers).
+**tidyBdE** is an **R** package that retrieves time series data from
+[Banco de
+España](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.html)
+bulk CSV files and the [Statistics web service
+(API)](https://www.bde.es/webbe/en/estadisticas/recursos/api-estadisticas-bde.html).
+Data are returned as [**tibble**](https://tibble.tidyverse.org/)
+objects. The package infers date, character and numeric fields where
+possible.
 
-## Search series
+## Search time series
 
-Banco de España (**BdE**) provides several time-series, either produced
-by the institution itself or compiled from other sources, such as
+Banco de España (**BdE**) provides several time series, either produced
+by the institution or compiled from other sources, such as
 [Eurostat](https://ec.europa.eu/eurostat) or [INE](https://www.ine.es/).
 
-The basic entry points for searching time-series are the catalogs
-(*indexes*). You can search for any series by name:
+The basic entry point for discovering time series is the catalog. You
+can search for time series by name:
 
 ``` r
+
 library(tidyBdE)
 
 library(ggplot2)
 library(dplyr)
 library(tidyr)
 
-
-# Search GBP on "TC" (exchange rate) catalog
+# Search for GBP in the "TC" (exchange rate) catalog.
 xr_gbp <- bde_catalog_search("GBP", catalog = "TC")
 
 xr_gbp |>
   select(Numero_secuencial, Descripcion_de_la_serie) |>
-  # To table on document
+  # Display the table in the document.
   knitr::kable()
 ```
 
-| Numero_secuencial | Descripcion_de_la_serie                                            |
-|------------------:|:-------------------------------------------------------------------|
-|            573214 | Tipo de cambio. Libras esterlinas por euro (GBP/EUR).Datos diarios |
+| Numero_secuencial | Descripcion_de_la_serie |
+|---:|:---|
+| 573214 | Tipo de cambio. Libras esterlinas por euro (GBP/EUR).Datos diarios |
 
-**Note:** BdE files are currently provided only in Spanish, as the
-institution works on an English version. Search terms should be provided
-in Spanish to obtain results.
+Table 1: Search results
 
-Once you have found your series, you can load the GBP/EUR exchange rate
-using the sequential number reference (`Numero_Secuencial`):
+**Note:** BdE metadata is currently available in Spanish only, so search
+terms must be in Spanish to retrieve results. The institution is working
+on an English version.
+
+After finding a time series, load the GBP/EUR exchange rate using the
+sequential number (`Numero_secuencial`):
 
 ``` r
-seq_number <- xr_gbp |>
-  # First record
-  slice(1) |>
-  # Get the ID
-  select(Numero_secuencial) |>
-  # Convert to numeric
-  as.double()
 
+seq_number <- xr_gbp |>
+  # Select the first record.
+  slice(1) |>
+  # Get the sequential number.
+  pull(Numero_secuencial) |>
+  # Convert to numeric.
+  as.double()
 
 seq_number
 #> [1] 573214
 
-
 time_series <- bde_series_load(seq_number, series_label = "EUR_GBP_XR") |>
   filter(Date >= "2010-01-01" & Date <= "2020-12-31") |>
   drop_na()
+
+time_series
+#> # A tibble: 2,816 × 2
+#>    Date       EUR_GBP_XR
+#>    <date>          <dbl>
+#>  1 2010-01-04      0.891
+#>  2 2010-01-05      0.900
+#>  3 2010-01-06      0.899
+#>  4 2010-01-07      0.900
+#>  5 2010-01-08      0.893
+#>  6 2010-01-11      0.899
+#>  7 2010-01-12      0.897
+#>  8 2010-01-13      0.895
+#>  9 2010-01-14      0.890
+#> 10 2010-01-15      0.881
+#> # ℹ 2,806 more rows
 ```
 
-## Plot series
+## Plot time series
 
-The package also provides a custom **ggplot2** theme based on BdE’s
+The package also provides a custom **ggplot2** theme based on BdE
 publications:
 
 ``` r
+
 ggplot(time_series, aes(x = Date, y = EUR_GBP_XR)) +
   geom_line(colour = bde_tidy_palettes(n = 1)) +
   geom_smooth(method = "gam", colour = bde_tidy_palettes(n = 2)[2]) +
@@ -89,16 +110,17 @@ ggplot(time_series, aes(x = Date, y = EUR_GBP_XR)) +
   theme_tidybde()
 ```
 
-![EUR/GBP Exchange Rate (2010-2020)](./chart-1.png)
+![Figure 1: EUR/GBP Exchange Rate (2010-2020)](./chart-1.png)
 
-EUR/GBP Exchange Rate (2010-2020)
+Figure 1: EUR/GBP Exchange Rate (2010-2020)
 
-The package also provides convenience functions for a selection of the
-most relevant macroeconomic series, eliminating the need for manual
-searching:
+The package also provides convenience functions for selected Spanish
+macroeconomic indicators, so you do not need to search for them
+manually:
 
 ``` r
-# Data in "long" format
+
+# Data in long format.
 
 plotseries <- bde_ind_gdp_var("GDP YoY", out_format = "long") |>
   bind_rows(
@@ -115,32 +137,34 @@ ggplot(plotseries, aes(x = Date, y = serie_value)) +
     caption = "Source: BdE"
   ) +
   theme_tidybde() +
-  scale_color_bde_d(palette = "bde_vivid_pal") # Custom palette on the package
+  scale_color_bde_d(palette = "bde_vivid_pal") # Use a custom package palette.
 ```
 
-![Spanish Economic Indicators (2010-2019)](./macroseries-1.png)
+![Figure 2: Spanish Economic Indicators
+(2010-2019)](./macroseries-1.png)
 
-Spanish Economic Indicators (2010-2019)
+Figure 2: Spanish Economic Indicators (2010-2019)
 
 ## A note on caching
 
-You can use **tidyBdE** to create your own local repository at a given
-local directory passing the following option:
+Create a local cache by setting the following option:
 
 ``` r
+
 options(bde_cache_dir = "./path/to/location")
 ```
 
-When this option is set, **tidyBdE** will look for cached files in the
-`bde_cache_dir` directory and load them, speeding up data retrieval.
+When this option is set, **tidyBdE** looks for cached files in the
+`bde_cache_dir` directory and loads them to speed up data retrieval.
 
-It is possible to update the data (i.e. after every monthly or quarterly
-data release) with the following commands:
+Update cached data after monthly or quarterly releases with the
+following commands:
 
 ``` r
+
 bde_catalog_update()
 
-# Or use update_cache = TRUE in most functions
+# Or use `update_cache = TRUE` in most functions.
 
-bde_series_load("SOME ID", update_cache = TRUE)
+bde_series_load(573214, update_cache = TRUE)
 ```

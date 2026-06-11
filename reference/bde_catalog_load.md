@@ -1,6 +1,6 @@
-# Load BdE catalogs
+# Load BdE catalog metadata
 
-Load the time-series catalogs provided by the BdE.
+Load BdE time series catalog metadata.
 
 ## Usage
 
@@ -16,39 +16,40 @@ bde_catalog_load(
 
 ## Source
 
-[Time-series bulk data
+[Time series bulk data
 download](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.html).
 
 ## Arguments
 
 - catalog:
 
-  A single value indicating the catalogs to be updated or `"ALL"` as a
-  shorthand. See **Details**.
+  A single catalog identifier to load, or `"ALL"` to load every catalog.
+  See **Details**.
 
 - parse_dates:
 
-  Logical. If `TRUE`, the dates will be parsed using
+  Logical. If `TRUE`, date columns are parsed with
   [`bde_parse_dates()`](https://ropenspain.github.io/tidyBdE/reference/bde_parse_dates.md).
 
 - cache_dir:
 
-  A path to a cache directory. The directory can also be set via options
-  with `options(bde_cache_dir = "path/to/dir")`.
+  Path to a cache directory. The directory can also be set with
+  `options(bde_cache_dir = "path/to/dir")`.
 
 - update_cache:
 
-  Logical. If `TRUE`, the requested file will be updated in the
-  `cache_dir`.
+  Logical. If `TRUE`, the requested file is refreshed in `cache_dir`.
 
 - verbose:
 
-  Logical `TRUE` or `FALSE`, display information useful for debugging.
+  Logical. If `TRUE`, display information useful for debugging.
 
 ## Value
 
 A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-object.
+with the requested catalog metadata. See
+[`vignette("csv_manual", package = "tidyBdE")`](https://ropenspain.github.io/tidyBdE/articles/csv_manual.md)
+for details.
 
 ## Details
 
@@ -63,11 +64,10 @@ Accepted values for `catalog` are:
 | `"TI"`   | Interest Rates       | Daily                | Daily         |
 | `"PB"`   | Bank Lending Survey  | Quarterly            | Quarterly     |
 
-Use `"ALL"` as a shorthand for updating all the catalogs at a glance.
+Use `"ALL"` as a shorthand for loading all catalogs at once.
 
-If the requested catalog is not cached
-[`bde_catalog_update()`](https://ropenspain.github.io/tidyBdE/reference/bde_catalog_update.md)
-is invoked.
+If the requested catalog is not cached, this function calls
+[`bde_catalog_update()`](https://ropenspain.github.io/tidyBdE/reference/bde_catalog_update.md).
 
 ## See also
 
@@ -80,13 +80,12 @@ Other catalog:
 ``` r
 # \donttest{
 bde_catalog_load("TI", verbose = TRUE)
-#> tidyBdE> Caching on temporary directory /tmp/RtmpSQsn6n
-#> tidyBdE> Need to download catalog TI
-#> tidyBdE> Cache dir is /tmp/RtmpSQsn6n
-#> tidyBdE> Updating catalogs: TI
-#> tidyBdE> Downloading file from https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/catalogo_ti.csv
-#> 
-#> tidyBdE> Parsing dates
+#> ℹ Using temporary cache directory /tmp/RtmpEJmdsZ.
+#> ℹ Downloading catalog "TI".
+#> ✔ Using cache directory /tmp/RtmpEJmdsZ.
+#> ℹ Updating catalogs: TI.
+#> ℹ Downloading file from <https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/catalogo_ti.csv>.
+#> ℹ Parsing date columns.
 #> # A tibble: 49 × 17
 #>    Nombre_de_la_serie Numero_secuencial Alias_de_la_serie Nombre_del_archivo_c…¹
 #>    <chr>                          <dbl> <chr>             <chr>                 

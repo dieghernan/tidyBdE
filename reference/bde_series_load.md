@@ -1,16 +1,17 @@
-# Load a single BdE time-series
+# Load a single BdE time series
+
+Load a single BdE time series.
 
 The series alias is a positional code showing the location (column
-and/or row) of the series in the table. However, although it is unique,
-it is not a good candidate to be used as the series ID, as it is subject
-to change. If a series changes position in the table, its alias will
-also change.
+and/or row) of the series in the table. Although it is unique, it is not
+stable enough to identify a time series because it may change when the
+series moves.
 
-To ensure series can still be identified, even after these changes, they
-are assigned a sequential number (referred to as `series_code` in this
-function).
+To ensure series can still be identified after these changes, they are
+assigned a sequential number, referred to as `series_code` in this
+function.
 
-Note that a single series may appear in different tables, so it can have
+A single time series may appear in different tables, so it can have
 several aliases. If you need to search by alias, use
 [`bde_series_full_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_full_load.md).
 
@@ -34,81 +35,76 @@ bde_series_load(
 
 - series_code:
 
-  A numeric value (or coercible with
-  [`base::as.double()`](https://rdrr.io/r/base/double.html)) or vector
-  of time-series code(s), as defined in the field `Número secuencial` of
-  the corresponding series. See
+  Numeric vector of sequential numbers, or values coercible with
+  [`base::as.double()`](https://rdrr.io/r/base/double.html), from the
+  `Número secuencial` field of the corresponding series. See
   [`bde_catalog_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_catalog_load.md).
 
 - series_label:
 
-  Optional. Character vector or value. Allows specifying a custom label
-  for the series extracted.
+  Optional character string or vector of labels to assign to the
+  extracted series.
 
 - out_format:
 
-  Whether the format should be returned as "long" or "wide". Possible
-  values are `"wide"` or `"long"`. See **Value** for details and section
-  **Examples**.
+  The format to return, either `"wide"` or `"long"`. See **Value** for
+  details and the **Examples** section.
 
 - parse_dates:
 
-  Logical. If `TRUE`, the dates will be parsed using
+  Logical. If `TRUE`, date columns are parsed with
   [`bde_parse_dates()`](https://ropenspain.github.io/tidyBdE/reference/bde_parse_dates.md).
 
 - parse_numeric:
 
-  Logical. If `TRUE` the columns would be parsed to double (numeric)
-  values. See **Note**.
+  Logical. If `TRUE`, the columns are parsed to double (numeric) values.
+  See **Note**.
 
 - cache_dir:
 
-  A path to a cache directory. The directory can also be set via options
-  with `options(bde_cache_dir = "path/to/dir")`.
+  Path to a cache directory. The directory can also be set with
+  `options(bde_cache_dir = "path/to/dir")`.
 
 - update_cache:
 
-  Logical. If `TRUE`, the requested file will be updated in the
-  `cache_dir`.
+  Logical. If `TRUE`, the requested file is refreshed in `cache_dir`.
 
 - verbose:
 
-  Logical `TRUE` or `FALSE`, display information useful for debugging.
+  Logical. If `TRUE`, display information useful for debugging.
 
 - extract_metadata:
 
-  Logical `TRUE/FALSE`. On `TRUE` the output is the metadata of the
-  requested series.
+  Logical. If `TRUE`, the output is the metadata of the requested
+  series.
 
 ## Value
 
 A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-with a field `Date`:
+with a `Date` column:
 
 - With `out_format = "wide"`, each series is presented in a separate
   column with the name defined by `series_label`.
 
 - With `out_format = "long"`, the tibble has two additional columns:
+  `serie_name`, with the label of each series, and `serie_value`, with
+  the corresponding value.
 
-  - `serie_name` with the label of each series.
-
-  - `serie_value` with the corresponding value.
-
-`"wide"` format is more suitable for exporting to a `.csv` file while
-`"long"` format is more suitable for creating plots with
+`"wide"` format is more suitable for exporting to a `.csv` file, while
+`"long"` format is more suitable for creating plots using
 [`ggplot2::ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html).
 See also
 [`tidyr::pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html)
 and
 [`tidyr::pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html).
 
-## Details
-
-Load a single time-series provided by BdE.
+See
+[`vignette("csv_manual", package = "tidyBdE")`](https://ropenspain.github.io/tidyBdE/articles/csv_manual.md)
+for details.
 
 ## Note
 
-This function attempts to coerce the columns to numbers. For some
+This function attempts to coerce the columns to numbers. For some time
 series, a warning may be displayed if the parsing fails.
 
 ## See also
@@ -118,27 +114,26 @@ series, a warning may be displayed if the parsing fails.
 [`bde_indicators()`](https://ropenspain.github.io/tidyBdE/reference/bde_indicators.md)
 
 Other series:
+[`bde_series_api`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md),
 [`bde_series_full_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_full_load.md)
 
 ## Examples
 
 ``` r
 # \donttest{
-# Metadata
+# Show metadata.
 bde_series_load(573234, verbose = TRUE, extract_metadata = TRUE)
-#> tidyBdE> Caching on temporary directory /tmp/RtmpSQsn6n
-#> tidyBdE> Cached version of BE detected
-#> tidyBdE> Cached version of SI detected
-#> tidyBdE> Cached version of TC detected
-#> tidyBdE> Cached version of TI detected
-#> tidyBdE> Cached version of PB detected
-#> tidyBdE> Parsing dates
-#> tidyBdE> Extracting series 573234
-#> 
-#> tidyBdE> Downloading serie 573234 from file TC_1_1.csv (alias TC_1_1.1).
-#> tidyBdE> Caching on temporary directory /tmp/RtmpSQsn6n/TC
-#> tidyBdE> Downloading file from https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/tc_1_1.csv
-#> 
+#> ℹ Using temporary cache directory /tmp/RtmpEJmdsZ.
+#> ✔ Using cached catalog "BE".
+#> ✔ Using cached catalog "SI".
+#> ✔ Using cached catalog "TC".
+#> ✔ Using cached catalog "TI".
+#> ✔ Using cached catalog "PB".
+#> ℹ Parsing date columns.
+#> ℹ Extracting series 573234.
+#> ℹ Downloading series 573234 from file TC_1_1.csv (alias "TC_1_1.1").
+#> ℹ Using temporary cache directory /tmp/RtmpEJmdsZ/TC.
+#> ℹ Downloading file from <https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/tc_1_1.csv>.
 #> # A tibble: 6 × 2
 #>   Date                        `573234`                                          
 #>   <chr>                       <chr>                                             
@@ -149,9 +144,9 @@ bde_series_load(573234, verbose = TRUE, extract_metadata = TRUE)
 #> 5 DESCRIPCIÓN DE LAS UNIDADES Dólares de Estados Unidos por Euro                
 #> 6 FRECUENCIA                  LABORABLE                                         
 
-# Data
+# Load data.
 bde_series_load(573234, extract_metadata = FALSE)
-#> # A tibble: 7,074 × 2
+#> # A tibble: 7,158 × 2
 #>    Date       `573234`
 #>    <date>        <dbl>
 #>  1 1999-01-04     1.18
@@ -164,9 +159,9 @@ bde_series_load(573234, extract_metadata = FALSE)
 #>  8 1999-01-13     1.17
 #>  9 1999-01-14     1.17
 #> 10 1999-01-15     1.16
-#> # ℹ 7,064 more rows
+#> # ℹ 7,148 more rows
 
-# Vectorized
+# Load multiple series.
 bde_series_load(c(573234, 573214),
   series_label = c("US/EUR", "GBP/EUR"),
   extract_metadata = TRUE
@@ -185,9 +180,9 @@ wide <- bde_series_load(c(573234, 573214),
   series_label = c("US/EUR", "GBP/EUR")
 )
 
-# Wide format
+# Show wide output.
 wide
-#> # A tibble: 7,074 × 3
+#> # A tibble: 7,158 × 3
 #>    Date       `US/EUR` `GBP/EUR`
 #>    <date>        <dbl>     <dbl>
 #>  1 1999-01-04     1.18     0.711
@@ -200,17 +195,16 @@ wide
 #>  8 1999-01-13     1.17     0.708
 #>  9 1999-01-14     1.17     0.706
 #> 10 1999-01-15     1.16     0.704
-#> # ℹ 7,064 more rows
+#> # ℹ 7,148 more rows
 
-
-# Long format
+# Show long output.
 long <- bde_series_load(c(573234, 573214),
   series_label = c("US/EUR", "GBP/EUR"),
   out_format = "long"
 )
 
 long
-#> # A tibble: 14,148 × 3
+#> # A tibble: 14,316 × 3
 #>    Date       serie_name serie_value
 #>    <date>     <fct>            <dbl>
 #>  1 1999-01-04 US/EUR            1.18
@@ -223,12 +217,10 @@ long
 #>  8 1999-01-13 US/EUR            1.17
 #>  9 1999-01-14 US/EUR            1.17
 #> 10 1999-01-15 US/EUR            1.16
-#> # ℹ 14,138 more rows
+#> # ℹ 14,306 more rows
 
-
-# Use with ggplot
+# Use with `ggplot2`.
 library(ggplot2)
-
 
 ggplot(long, aes(Date, serie_value)) +
   geom_line(aes(group = serie_name, color = serie_name)) +

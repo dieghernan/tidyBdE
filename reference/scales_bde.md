@@ -1,8 +1,8 @@
-# BdE scales for [ggplot2](https://CRAN.R-project.org/package=ggplot2)
+# BdE color scales
 
-Scales to be used with the
+Color scales for the
 [ggplot2](https://CRAN.R-project.org/package=ggplot2) package. Discrete
-palettes are named `scale_*_bde_d`, while continuous palettes are named
+scales are named `scale_*_bde_d`, while continuous palettes are named
 `scale_*_bde_c`.
 
 ## Usage
@@ -43,26 +43,24 @@ scale_fill_bde_c(
 
 - palette:
 
-  Name of the BdE palette to apply. See
+  BdE palette to apply. See
   [`bde_tidy_palettes()`](https://ropenspain.github.io/tidyBdE/reference/bde_tidy_palettes.md)
   for details.
 
 - alpha:
 
-  An alpha-transparency level in the range `[0,1]` (`0` means
-  transparent and `1` means opaque). A missing, i.e., `alpha = NULL`,
-  does not add opacity codes (`"FF"`) to the individual color hex codes.
-  See
-  [`ggplot2::alpha()`](https://ggplot2.tidyverse.org/reference/reexports.html).
+  Alpha transparency level in the range `[0, 1]`, where `0` is
+  transparent and `1` is opaque. If `alpha = NULL`, the function does
+  not append opacity codes (`"FF"`) to individual color hex codes. See
+  [`ggplot2::alpha()`](https://scales.r-lib.org/reference/alpha.html).
 
 - rev:
 
-  Logical indicating whether the ordering of the colors should be
-  reversed.
+  Logical indicating whether to reverse the color order.
 
 - ...:
 
-  Further arguments of
+  Additional arguments passed to
   [`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html)
   or
   [`ggplot2::continuous_scale()`](https://ggplot2.tidyverse.org/reference/continuous_scale.html).
@@ -75,7 +73,7 @@ scale_fill_bde_c(
 
 ## Value
 
-A [ggplot2](https://CRAN.R-project.org/package=ggplot2) color scale.
+A [ggplot2](https://CRAN.R-project.org/package=ggplot2) scale object.
 
 ## See also
 
@@ -104,7 +102,6 @@ ggplot(txsamp, aes(x = sales, y = median)) +
   geom_point(aes(colour = city)) +
   scale_color_bde_d() +
   theme_minimal()
-
 
 
 ggplot(txsamp, aes(x = sales, y = median)) +

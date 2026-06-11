@@ -1,6 +1,6 @@
-# Update BdE catalogs
+# Update BdE catalog files
 
-Update the time-series catalogs provided by BdE.
+Update BdE time series catalog files.
 
 ## Usage
 
@@ -14,28 +14,28 @@ bde_catalog_update(
 
 ## Source
 
-[Time-series bulk data
+[Time series bulk data
 download](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.html).
 
 ## Arguments
 
 - catalog:
 
-  A vector of characters indicating the catalogs to be updated or
-  `"ALL"` as a shorthand. See **Details**.
+  A single catalog identifier to update, or `"ALL"` to update every
+  catalog. See **Details**.
 
 - cache_dir:
 
-  A path to a cache directory. The directory can also be set via options
-  with `options(bde_cache_dir = "path/to/dir")`.
+  Path to a cache directory. The directory can also be set with
+  `options(bde_cache_dir = "path/to/dir")`.
 
 - verbose:
 
-  Logical `TRUE` or `FALSE`, display information useful for debugging.
+  Logical. If `TRUE`, display information useful for debugging.
 
 ## Value
 
-None. Downloads the catalog file(s) to the local machine.
+An invisible list of download results.
 
 ## Details
 
@@ -50,7 +50,7 @@ Accepted values for `catalog` are:
 | `"TI"`   | Interest Rates       | Daily                | Daily         |
 | `"PB"`   | Bank Lending Survey  | Quarterly            | Quarterly     |
 
-Use `"ALL"` as a shorthand for updating all the catalogs at a glance.
+Use `"ALL"` as a shorthand for updating all catalogs at once.
 
 ## See also
 
@@ -63,9 +63,8 @@ Other catalog:
 ``` r
 # \donttest{
 bde_catalog_update("TI", verbose = TRUE)
-#> tidyBdE> Caching on temporary directory /tmp/RtmpSQsn6n
-#> tidyBdE> Updating catalogs: TI
-#> tidyBdE> Downloading file from https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/catalogo_ti.csv
-#> 
+#> ℹ Using temporary cache directory /tmp/RtmpEJmdsZ.
+#> ℹ Updating catalogs: TI.
+#> ℹ Downloading file from <https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/catalogo_ti.csv>.
 # }
 ```

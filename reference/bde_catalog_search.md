@@ -1,6 +1,6 @@
 # Search BdE catalogs
 
-Search for keywords on the time-series catalogs.
+Search BdE time series catalog metadata for keywords.
 
 ## Usage
 
@@ -22,28 +22,27 @@ bde_catalog_search(pattern, ...)
 
   `catalog`
 
-  :   A single value indicating the catalogs to be updated or `"ALL"` as
-      a shorthand. See **Details**.
+  :   A single catalog identifier to load, or `"ALL"` to load every
+      catalog. See **Details**.
 
   `parse_dates`
 
-  :   Logical. If `TRUE`, the dates will be parsed using
+  :   Logical. If `TRUE`, date columns are parsed with
       [`bde_parse_dates()`](https://ropenspain.github.io/tidyBdE/reference/bde_parse_dates.md).
 
   `update_cache`
 
-  :   Logical. If `TRUE`, the requested file will be updated in the
+  :   Logical. If `TRUE`, the requested file is refreshed in
       `cache_dir`.
 
   `cache_dir`
 
-  :   A path to a cache directory. The directory can also be set via
-      options with `options(bde_cache_dir = "path/to/dir")`.
+  :   Path to a cache directory. The directory can also be set with
+      `options(bde_cache_dir = "path/to/dir")`.
 
   `verbose`
 
-  :   Logical `TRUE` or `FALSE`, display information useful for
-      debugging.
+  :   Logical. If `TRUE`, display information useful for debugging.
 
 ## Value
 
@@ -52,17 +51,17 @@ object with the results of the query.
 
 ## Details
 
-**Note:** BdE files are currently provided only in Spanish. Therefore,
-search terms should be provided in Spanish to obtain search results.
+**Note:** BdE metadata is currently available in Spanish only.
+Therefore, search terms must be in Spanish to retrieve results.
 
-This function uses [`base::grep()`](https://rdrr.io/r/base/grep.html)
-function for finding matches on the catalogs. You can pass [regular
+This function uses [`base::grep()`](https://rdrr.io/r/base/grep.html) to
+find matches in the catalogs. You can pass [regular
 expressions](https://rdrr.io/r/base/regex.html) to broaden the search.
 
 ## See also
 
 [`bde_catalog_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_catalog_load.md),
-[base::regex](https://rdrr.io/r/base/regex.html)
+[`base::regex()`](https://rdrr.io/r/base/regex.html)
 
 Other catalog:
 [`bde_catalog_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_catalog_load.md),
@@ -72,8 +71,8 @@ Other catalog:
 
 ``` r
 # \donttest{
-# Simple search (needs to be in Spanish)
-# !! PIB [es] == GDP [en]
+# Simple search. Search terms must be in Spanish.
+# PIB [es] == GDP [en].
 
 bde_catalog_search("PIB")
 #> # A tibble: 400 × 17
@@ -97,7 +96,7 @@ bde_catalog_search("PIB")
 #> #   Fecha_de_la_primera_observacion <date>,
 #> #   Fecha_de_la_ultima_observacion <date>, Numero_de_observaciones <dbl>, …
 
-# More complex - Single
+# Search with a single complex condition.
 bde_catalog_search("Francia(.*)PIB")
 #> # A tibble: 2 × 17
 #>   Nombre_de_la_serie  Numero_secuencial Alias_de_la_serie Nombre_del_archivo_c…¹
@@ -112,7 +111,7 @@ bde_catalog_search("Francia(.*)PIB")
 #> #   Fecha_de_la_ultima_observacion <date>, Numero_de_observaciones <dbl>,
 #> #   Titulo_de_la_serie <chr>, Fuente <chr>, Notas <chr>
 
-# Even more complex - Double
+# Search with multiple complex conditions.
 bde_catalog_search("Francia(.*)PIB|Italia(.*)PIB|Alemania(.*)PIB")
 #> # A tibble: 6 × 17
 #>   Nombre_de_la_serie  Numero_secuencial Alias_de_la_serie Nombre_del_archivo_c…¹

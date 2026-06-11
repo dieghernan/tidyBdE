@@ -1,11 +1,11 @@
-# tidyBdE: Download Data from Bank of Spain
+# tidyBdE: Retrieve Time Series Data from 'Banco de España'
 
-Tools to download data series from 'Banco de España' ('BdE') on 'tibble'
-format. 'Banco de España' is the national central bank and, within the
+Tools for retrieving time series data from 'Banco de España' ('BdE')
+bulk CSV files and the 'Statistics web service (API)' as 'tibble'
+objects. 'Banco de España' is the national central bank and, within the
 framework of the Single Supervisory Mechanism ('SSM'), the supervisor of
-the Spanish banking system along with the European Central Bank. This
-package is in no way sponsored endorsed or administered by 'Banco de
-España'.
+the Spanish banking system alongside the European Central Bank. This
+package is not sponsored, endorsed or administered by 'Banco de España'.
 
 ## See also
 
@@ -21,3 +21,13 @@ Useful links:
 
 **Maintainer**: Diego H. Herrero <dev.dieghernan@gmail.com>
 ([ORCID](https://orcid.org/0000-0001-8457-4658)) \[copyright holder\]
+
+Authors:
+
+- Diego H. Herrero <dev.dieghernan@gmail.com>
+  ([ORCID](https://orcid.org/0000-0001-8457-4658)) \[copyright holder\]
+
+Other contributors:
+
+- Banco de España ([ROR](https://ror.org/02f26yq04)) (Data copyright
+  holder) \[copyright holder\]

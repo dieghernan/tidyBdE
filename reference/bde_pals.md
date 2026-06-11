@@ -1,12 +1,10 @@
-# BdE superseded palettes
+# Superseded BdE palettes
 
 **\[superseded\]**
 
-These functions have been superseded; see
+These palettes are superseded. Use
 [`bde_tidy_palettes()`](https://ropenspain.github.io/tidyBdE/reference/bde_tidy_palettes.md)
-as a replacement.
-
-Custom palettes based on the publications of BdE.
+instead.
 
 ## Usage
 
@@ -20,22 +18,22 @@ bde_rose_pal(...)
 
 - ...:
 
-  Further arguments of the functions.
+  Additional arguments.
 
 ## Value
 
-A palette of colors.
+A color palette function.
 
 ## Examples
 
 ``` r
-# BdE vivid pal
+# Show the vivid palette.
 scales::show_col(bde_vivid_pal()(6), labels = FALSE)
 #> Warning: `bde_vivid_pal()` was deprecated in tidyBdE 0.3.5.
 #> ℹ Please use `bde_tidy_palettes()` instead.
 
 
-# BdE rose pal
+# Show the rose palette.
 scales::show_col(bde_rose_pal()(6), labels = FALSE)
 #> Warning: `bde_rose_pal()` was deprecated in tidyBdE 0.3.5.
 #> ℹ Please use `bde_tidy_palettes()` instead.
