@@ -1,13 +1,10 @@
 # tidyBdE
 
-**tidyBdE** is an **R** package that retrieves time series data from
-[Banco de
-España](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.html)
-bulk CSV files and the [Statistics web service
-(API)](https://www.bde.es/webbe/en/estadisticas/recursos/api-estadisticas-bde.html).
+**tidyBdE** is an **R** package that retrieves data from [Banco de
+España](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.html).
 Data are returned as [**tibble**](https://tibble.tidyverse.org/)
-objects. The package infers date, character and numeric fields where
-possible.
+objects. The package automatically detects the format of each time
+series field, including dates, character fields and numeric fields.
 
 Important
 
@@ -52,8 +49,8 @@ Banco de España (**BdE**) provides several time series, either produced
 by the institution or compiled from other sources, such as
 [Eurostat](https://ec.europa.eu/eurostat) or [INE](https://www.ine.es/).
 
-The basic entry point for discovering time series is the catalog. You
-can search for time series by name:
+The basic entry point for searching time series is the catalog. You can
+search for time series by name:
 
 ``` r
 
@@ -86,14 +83,14 @@ must be in Spanish to retrieve results. The institution is working on an
 English version.
 
 After finding a time series, you can load the GBP/EUR exchange rate
-using the sequential number (`Numero_secuencial`):
+using the sequential number reference (`Numero_secuencial`):
 
 ``` r
 
 seq_number <- xr_gbp |>
   # Select the first record.
   slice(1) |>
-  # Get the sequential number.
+  # Get the series code.
   select(Numero_secuencial) |>
   # Convert to numeric.
   as.double()
@@ -210,7 +207,7 @@ bde_catalog_update()
 
 # Or use `update_cache = TRUE` in most functions.
 
-bde_series_load(573214, update_cache = TRUE)
+bde_series_load("SOME ID", update_cache = TRUE)
 ```
 
 ## Citation
@@ -230,6 +227,6 @@ A BibTeX entry for LaTeX users is:
   year = {2026},
   version = {0.6.1.9000},
   url = {https://ropenspain.github.io/tidyBdE/},
-  abstract = {Tools for retrieving time series data from Banco de España (BdE) bulk CSV files and the Statistics web service (API) as tibble objects. Banco de España is the national central bank and, within the framework of the Single Supervisory Mechanism (SSM), the supervisor of the Spanish banking system alongside the European Central Bank. This package is not sponsored, endorsed or administered by Banco de España.},
+  abstract = {Tools for retrieving time series data from Banco de España (BdE) as tibble objects. Banco de España is the national central bank and, within the framework of the Single Supervisory Mechanism (SSM), the supervisor of the Spanish banking system alongside the European Central Bank. This package is not sponsored, endorsed or administered by Banco de España.},
 }
 ```

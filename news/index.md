@@ -13,15 +13,7 @@
   `devtools:::test_coverage()`.
 - New vignette
   [`vignette("csv_manual", package = "tidyBdE")`](https://ropenspain.github.io/tidyBdE/articles/csv_manual.md)
-  explaining the structure of Banco de España bulk CSV files.
-- [`bde_series_api_latest()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
-  added to query the Latest Data request of the Banco de España
-  [Statistics web service
-  (API)](https://www.bde.es/webbe/en/estadisticas/recursos/api-estadisticas-bde.html).
-- [`bde_series_api_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
-  added to query the Series List request of the Banco de España
-  Statistics web service (API), with support for wide and long output,
-  metadata extraction and API range validation.
+  explaining the structure of the CSV files provided by BdE.
 
 ## tidyBdE 0.6.1
 

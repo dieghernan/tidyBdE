@@ -13,15 +13,10 @@ Search, update and load BdE time series catalog metadata.
 
 ## Series
 
-Load individual series, complete BdE time series files and Statistics
-web service (API) data.
+Load individual time series and complete BdE time series files.
 
-- [`bde_series_api_latest()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
-  [`bde_series_api_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
-  **\[experimental\]** : Load BdE time series from the Statistics web
-  service (API)
 - [`bde_series_full_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_full_load.md)
-  : Load full BdE time series files
+  : Load BdE full time series files
 - [`bde_series_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_load.md)
   : Load a single BdE time series
 
