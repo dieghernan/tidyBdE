@@ -1,10 +1,15 @@
 # tidyBdE
 
-**tidyBdE** is an **R** package that retrieves data from [Banco de
-España](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.html).
+**tidyBdE** is an **R** package that retrieves time series data from
+[Banco de
+España](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.html)
+bulk CSV files and the [Statistics web service
+(API)](https://www.bde.es/webbe/en/estadisticas/recursos/api-estadisticas-bde.html).
 Data are returned as [**tibble**](https://tibble.tidyverse.org/)
-objects. The package automatically detects the format of each time
-series field, including dates, character fields and numeric fields.
+objects. The package infers date, character and numeric column types
+where possible. Bulk CSV helpers identify series with stable sequential
+numbers (`Numero_secuencial`), while API helpers use
+`Nombre_de_la_serie` as the API series code.
 
 Important
 
@@ -45,12 +50,12 @@ install.packages(
 
 ## Examples
 
-Banco de España (**BdE**) provides several time series, either produced
-by the institution or compiled from other sources, such as
+Banco de España (**BdE**) publishes numerous time series produced by the
+institution or compiled from other sources, such as
 [Eurostat](https://ec.europa.eu/eurostat) or [INE](https://www.ine.es/).
 
-The basic entry point for searching time series is the catalog. You can
-search for time series by name:
+Catalog metadata is the main entry point for discovering time series.
+You can search for time series by name:
 
 ``` r
 
@@ -61,7 +66,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 
-# Search for GBP in the "TC" (exchange rate) catalog.
+# Search for GBP in the "TC" (exchange rate) catalog metadata.
 xr_gbp <- bde_catalog_search("GBP", catalog = "TC")
 
 xr_gbp |>
@@ -78,19 +83,19 @@ Table 1: Search results
 
 Note
 
-BdE metadata is currently available in Spanish only, so search terms
-must be in Spanish to retrieve results. The institution is working on an
-English version.
+BdE catalog metadata is currently available in Spanish only, so search
+terms must be in Spanish to retrieve results. Banco de España is working
+on an English version.
 
-After finding a time series, you can load the GBP/EUR exchange rate
-using the sequential number reference (`Numero_secuencial`):
+After finding a time series, you can load the GBP/EUR exchange rate from
+bulk CSV files using its stable sequential number (`Numero_secuencial`):
 
 ``` r
 
 seq_number <- xr_gbp |>
   # Select the first record.
   slice(1) |>
-  # Get the series code.
+  # Get the stable sequential number.
   select(Numero_secuencial) |>
   # Convert to numeric.
   as.double()
@@ -128,7 +133,7 @@ ggplot(time_series, aes(x = Date, y = EUR_GBP_XR)) +
   geom_line(colour = bde_tidy_palettes(n = 1)) +
   geom_smooth(method = "gam", colour = bde_tidy_palettes(n = 2)[2]) +
   labs(
-    title = "EUR/GBP Exchange Rate (2010-2020)",
+    title = "EUR/GBP exchange rate (2010-2020)",
     subtitle = "%",
     caption = "Source: BdE"
   ) +
@@ -145,7 +150,7 @@ ggplot(time_series, aes(x = Date, y = EUR_GBP_XR)) +
   theme_tidybde()
 ```
 
-![EUR/GBP Exchange Rate
+![EUR/GBP exchange rate
 (2010-2020)](reference/figures/README-chart-1.png)
 
 The package also provides convenience functions for selected Spanish
@@ -166,7 +171,7 @@ plotseries <- bde_ind_gdp_var("GDP YoY", out_format = "long") |>
 ggplot(plotseries, aes(x = Date, y = serie_value)) +
   geom_line(aes(color = serie_name), linewidth = 1) +
   labs(
-    title = "Spanish Economic Indicators (2010-2019)",
+    title = "Spanish economic indicators (2010-2019)",
     subtitle = "%",
     caption = "Source: BdE"
   ) +
@@ -174,13 +179,13 @@ ggplot(plotseries, aes(x = Date, y = serie_value)) +
   scale_color_bde_d(palette = "bde_vivid_pal") # Use a custom package palette.
 ```
 
-![Spanish Economic Indicators
+![Spanish economic indicators
 (2010-2019)](reference/figures/README-macroseries-1.png)
 
 ### Palettes
 
-Three custom palettes are available. They are based on colors used by
-BdE in some publications.
+Three custom palettes based on colors used by BdE in selected
+publications are available.
 
 Apply these palettes to **ggplot2** plots with the scale functions
 provided by the package. See
@@ -195,8 +200,8 @@ Create a local cache by setting the following option:
 options(bde_cache_dir = "./path/to/location")
 ```
 
-When this option is set, **tidyBdE** looks for cached files in the
-`bde_cache_dir` directory and loads them to speed up data retrieval.
+When this option is set, **tidyBdE** looks for cached bulk CSV files in
+the `bde_cache_dir` directory and loads them to speed up data retrieval.
 
 Update cached data after monthly or quarterly releases with the
 following commands:
@@ -207,7 +212,7 @@ bde_catalog_update()
 
 # Or use `update_cache = TRUE` in most functions.
 
-bde_series_load("SOME ID", update_cache = TRUE)
+bde_series_load(573214, update_cache = TRUE)
 ```
 
 ## Citation
@@ -227,6 +232,6 @@ A BibTeX entry for LaTeX users is:
   year = {2026},
   version = {0.6.1.9000},
   url = {https://ropenspain.github.io/tidyBdE/},
-  abstract = {Tools for retrieving time series data from Banco de España (BdE) as tibble objects. Banco de España is the national central bank and, within the framework of the Single Supervisory Mechanism (SSM), the supervisor of the Spanish banking system alongside the European Central Bank. This package is not sponsored, endorsed or administered by Banco de España.},
+  abstract = {Tools for retrieving Banco de España (BdE) time series data as tibble objects from bulk CSV files and the Statistics web service (API). Bulk CSV helpers use stable BdE sequential numbers, and API helpers use API series codes. Banco de España is the national central bank and, within the framework of the Single Supervisory Mechanism (SSM), the supervisor of the Spanish banking system alongside the European Central Bank. This package is not sponsored, endorsed or administered by Banco de España.},
 }
 ```

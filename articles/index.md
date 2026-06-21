@@ -2,24 +2,37 @@
 
 ### Get started
 
+Learn the main **tidyBdE** workflows and data retrieval options.
+
 - [Get started with
   tidyBdE](https://ropenspain.github.io/tidyBdE/articles/tidyBdE.md):
 
   Introduction to tidyBdE.
 
-### Articles
+### Data discovery and formats
 
-- [Banco de España CSV Time-Series
-  Format](https://ropenspain.github.io/tidyBdE/articles/csv_manual.md):
+Learn how Banco de España bulk CSV files are structured and how to use
+catalog metadata to identify time series.
 
-  Structure and content of Banco de España time-series CSV files.
+- [Banco de España bulk CSV
+  files](https://ropenspain.github.io/tidyBdE/articles/csv_manual.md):
 
-- [Main macroeconomic
-  indicators](https://ropenspain.github.io/tidyBdE/articles/mainseries.md):
-
-  Evolution of selected Spanish economic indicators.
+  Structure, metadata fields and date formats used in Banco de España
+  bulk CSV files.
 
 - [Series
   index](https://ropenspain.github.io/tidyBdE/articles/seriesindex.md):
 
-  Summary of time series available through tidyBdE.
+  Catalog metadata for Banco de España time series, including stable
+  sequential numbers and API series codes.
+
+### Worked examples
+
+Worked examples using selected Spanish macroeconomic indicators and
+BdE-inspired plotting helpers.
+
+- [Selected macroeconomic
+  indicators](https://ropenspain.github.io/tidyBdE/articles/mainseries.md):
+
+  Worked examples using selected Spanish macroeconomic indicators and
+  BdE plotting helpers.

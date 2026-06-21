@@ -1,7 +1,7 @@
-# BdE ggplot2 theme
+# BdE theme for ggplot2
 
-Custom [ggplot2](https://CRAN.R-project.org/package=ggplot2) theme based
-on BdE publications.
+A custom [ggplot2](https://CRAN.R-project.org/package=ggplot2) theme
+based on BdE publications.
 
 ## Usage
 
@@ -49,14 +49,15 @@ A [ggplot2](https://CRAN.R-project.org/package=ggplot2) theme object.
 
 ## Details
 
-This theme is based on
+This theme extends
 [`ggplot2::theme_classic()`](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 
 ## See also
 
 [`ggplot2::theme_classic()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+for the base theme extended here.
 
-Other bde_plot:
+Plotting functions:
 [`bde_tidy_palettes()`](https://ropenspain.github.io/tidyBdE/reference/bde_tidy_palettes.md),
 [`scales_bde`](https://ropenspain.github.io/tidyBdE/reference/scales_bde.md)
 
@@ -66,14 +67,6 @@ Other bde_plot:
 # \donttest{
 library(ggplot2)
 library(dplyr)
-#> 
-#> Attaching package: ‘dplyr’
-#> The following objects are masked from ‘package:stats’:
-#> 
-#>     filter, lag
-#> The following objects are masked from ‘package:base’:
-#> 
-#>     intersect, setdiff, setequal, union
 library(tidyr)
 
 series_TC <- bde_series_full_load("TC_1_1.csv")

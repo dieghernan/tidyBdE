@@ -1,9 +1,9 @@
-# Main macroeconomic indicators
+# Selected macroeconomic indicators
 
-This article shows selected Spanish macroeconomic indicators using Banco
-de España data.
+This article presents selected Spanish macroeconomic indicators
+retrieved from Banco de España bulk CSV files.
 
-Last updated: **15-June-2026**.
+Last updated: **21-June-2026**.
 
 ``` r
 

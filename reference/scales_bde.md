@@ -1,9 +1,8 @@
 # BdE color scales
 
-Color scales for the
-[ggplot2](https://CRAN.R-project.org/package=ggplot2) package. Discrete
-scales are named `scale_*_bde_d`, while continuous palettes are named
-`scale_*_bde_c`.
+Color scales for [ggplot2](https://CRAN.R-project.org/package=ggplot2).
+Discrete scales are named `scale_*_bde_d`, while continuous scales are
+named `scale_*_bde_c`.
 
 ## Usage
 
@@ -56,7 +55,7 @@ scale_fill_bde_c(
 
 - rev:
 
-  Logical indicating whether to reverse the color order.
+  Logical. If `TRUE`, reverse the color order.
 
 - ...:
 
@@ -77,10 +76,12 @@ A [ggplot2](https://CRAN.R-project.org/package=ggplot2) scale object.
 
 ## See also
 
-[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html),
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html)
+and
 [`ggplot2::continuous_scale()`](https://ggplot2.tidyverse.org/reference/continuous_scale.html)
+for the underlying scale constructors.
 
-Other bde_plot:
+Plotting functions:
 [`bde_tidy_palettes()`](https://ropenspain.github.io/tidyBdE/reference/bde_tidy_palettes.md),
 [`theme_tidybde()`](https://ropenspain.github.io/tidyBdE/reference/theme_tidybde.md)
 
@@ -108,5 +109,4 @@ ggplot(txsamp, aes(x = sales, y = median)) +
   geom_point(aes(colour = city)) +
   scale_color_bde_d("bde_qual_pal") +
   theme_minimal()
-
 ```

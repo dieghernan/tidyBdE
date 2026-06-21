@@ -18,7 +18,7 @@ bde_tidy_palettes(
 
 - n:
 
-  The number of colors (`>= 1`) to return.
+  Number of colors to return. Must be at least `1`.
 
 - palette:
 
@@ -33,7 +33,7 @@ bde_tidy_palettes(
 
 - rev:
 
-  Logical indicating whether to reverse the color order.
+  Logical. If `TRUE`, reverse the color order.
 
 ## Value
 
@@ -41,7 +41,7 @@ A character vector of hex color codes.
 
 ## See also
 
-Other bde_plot:
+Plotting functions:
 [`scales_bde`](https://ropenspain.github.io/tidyBdE/reference/scales_bde.md),
 [`theme_tidybde()`](https://ropenspain.github.io/tidyBdE/reference/theme_tidybde.md)
 

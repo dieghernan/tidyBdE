@@ -6,21 +6,32 @@
   in indicator wrappers and **ggplot2** scale helpers.
 - Messages and package errors now use **cli**, with AI-assisted wording
   updates and without the former `tidyBdE>` prefix.
-- Roxygen2 documentation was reviewed with AI assistance and tag order
-  was made consistent across source files.
+- **roxygen2** documentation was reviewed with AI assistance and tag
+  order was made consistent across source files.
 - Tests were refactored and expanded with local fixtures, mocks and
   snapshot updates, reaching 100% line coverage in
-  `devtools:::test_coverage()`.
+  [`devtools::test_coverage()`](https://devtools.r-lib.org/reference/test.html).
 - New vignette
   [`vignette("csv_manual", package = "tidyBdE")`](https://ropenspain.github.io/tidyBdE/articles/csv_manual.md)
-  explaining the structure of the CSV files provided by BdE.
+  explaining the structure of Banco de España bulk CSV files, catalog
+  metadata and series identifiers
+  ([\#64](https://github.com/rOpenSpain/tidyBdE/issues/64)).
+- New functions added
+  ([\#65](https://github.com/rOpenSpain/tidyBdE/issues/65)):
+  - [`bde_series_api_latest()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
+    added to query the Latest Data request of the Banco de España
+    [Statistics web service
+    (API)](https://www.bde.es/webbe/en/estadisticas/recursos/api-estadisticas-bde.html).
+  - [`bde_series_api_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
+    added to query the Series List request of the Banco de España
+    Statistics web service (API), with support for wide and long output,
+    metadata extraction and time range validation.
 
 ## tidyBdE 0.6.1
 
 CRAN release: 2026-05-21
 
-- Improve reading of external `.csv` files by detecting file encoding
-  with
+- Improve reading of external CSV files by detecting file encoding with
   [`readr::guess_encoding()`](https://readr.tidyverse.org/reference/encoding.html).
 - Package documentation was reviewed and updated with AI-assisted
   editing.
@@ -30,7 +41,7 @@ CRAN release: 2026-05-21
 CRAN release: 2026-03-23
 
 - Migrate vignettes to Quarto.
-- Update the series code used by
+- Update the sequential number used by
   [`bde_ind_cpi_var()`](https://ropenspain.github.io/tidyBdE/reference/bde_indicators.md)
   (see
   [`?bde_ind_db`](https://ropenspain.github.io/tidyBdE/reference/bde_ind_db.md)).
@@ -49,7 +60,7 @@ CRAN release: 2025-06-22
 - [`?bde_indicators`](https://ropenspain.github.io/tidyBdE/reference/bde_indicators.md)
   is now based on data from the new
   [`?bde_ind_db`](https://ropenspain.github.io/tidyBdE/reference/bde_ind_db.md)
-  database, which clarifies the underlying series codes and makes
+  database, which clarifies the underlying sequential numbers and makes
   maintenance easier.
 
 ## tidyBdE 0.3.8
@@ -66,7 +77,7 @@ CRAN release: 2024-08-26
 
 - DOI changed to the **CRAN** URL:
   <https://doi.org/10.32614/CRAN.package.tidyBdE>.
-- Native encoding when reading `.csv` files changed to `"latin1"`.
+- Native encoding when reading CSV files changed to `"latin1"`.
 - Update
   [`bde_ind_unemployment_rate()`](https://ropenspain.github.io/tidyBdE/reference/bde_indicators.md)
   and
@@ -132,7 +143,7 @@ CRAN release: 2022-11-16
 
 - Add **tidyr** as a new dependency.
 - Add the `out_format` parameter to
-  [`bde_series_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_load.md).
+  [`bde_series_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series.md).
 - Apply best practices and small adjustments to
   [`theme_tidybde()`](https://ropenspain.github.io/tidyBdE/reference/theme_tidybde.md).
 
@@ -157,7 +168,7 @@ CRAN release: 2022-08-13
 
 CRAN release: 2022-02-23
 
-- Update the series code used by
+- Update the sequential number used by
   [`bde_ind_cpi_var()`](https://ropenspain.github.io/tidyBdE/reference/bde_indicators.md).
 
 ## tidyBdE 0.2.3
@@ -177,7 +188,7 @@ CRAN release: 2021-10-29
   [`?bde_indicators`](https://ropenspain.github.io/tidyBdE/reference/bde_indicators.md)
   are likely to break during the transition. So far,
   [`bde_ind_euribor_12m_monthly()`](https://ropenspain.github.io/tidyBdE/reference/bde_indicators.md)
-  has been updated to use the new series code `587853`. See
+  has been updated to use the new sequential number `587853`. See
   <https://www.bde.es/wbe/en/estadisticas/>.
 - Update documentation and examples.
 
@@ -185,7 +196,7 @@ CRAN release: 2021-10-29
 
 CRAN release: 2021-10-07
 
-- [`bde_series_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_load.md)
+- [`bde_series_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series.md)
   now tries to coerce characters to numeric values.
 - Export
   [`bde_check_access()`](https://ropenspain.github.io/tidyBdE/reference/bde_check_access.md).

@@ -26,10 +26,14 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Articles</h6></li>
-    <li><a class="dropdown-item" href="../articles/csv_manual.html">Banco de España CSV Time-Series Format</a></li>
-    <li><a class="dropdown-item" href="../articles/mainseries.html">Main macroeconomic indicators</a></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Data</h6></li>
+    <li><a class="dropdown-item" href="../articles/csv_manual.html">Banco de España bulk CSV files</a></li>
     <li><a class="dropdown-item" href="../articles/seriesindex.html">Series index</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Examples</h6></li>
+    <li><a class="dropdown-item" href="../articles/mainseries.html">Selected macroeconomic indicators</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="../articles/index.html">More articles...</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -52,9 +56,9 @@
     </div>
 
     <div class="section level2">
-      <h2 id="catalogs">Catalogs<a class="anchor" aria-label="anchor" href="#catalogs"></a></h2>
+      <h2 id="catalog-metadata">Catalog metadata<a class="anchor" aria-label="anchor" href="#catalog-metadata"></a></h2>
 
-      <div class="section-desc"><p>Search, update and load BdE time series catalog metadata.</p></div>
+      <div class="section-desc"><p>Discover, load and update Banco de España time series metadata.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -63,28 +67,14 @@
 
       <dl><dt>
 
-          <code><a href="bde_catalog_load.html">bde_catalog_load()</a></code>
+          <code><a href="bde_catalogs.html">bde_catalog_load()</a></code> <code><a href="bde_catalogs.html">bde_catalog_update()</a></code> <code><a href="bde_catalogs.html">bde_catalog_search()</a></code>
 
         </dt>
-        <dd>Load BdE catalog metadata</dd>
-
-        <dt>
-
-          <code><a href="bde_catalog_search.html">bde_catalog_search()</a></code>
-
-        </dt>
-        <dd>Search BdE catalogs</dd>
-
-        <dt>
-
-          <code><a href="bde_catalog_update.html">bde_catalog_update()</a></code>
-
-        </dt>
-        <dd>Update BdE catalog files</dd>
+        <dd>Load, update and search BdE catalog metadata</dd>
       </dl></div><div class="section level2">
-      <h2 id="series">Series<a class="anchor" aria-label="anchor" href="#series"></a></h2>
+      <h2 id="time-series">Time series<a class="anchor" aria-label="anchor" href="#time-series"></a></h2>
 
-      <div class="section-desc"><p>Load individual time series and complete BdE time series files.</p></div>
+      <div class="section-desc"><p>Retrieve time series from bulk CSV files or the Statistics web service using stable sequential numbers or API series codes.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -93,21 +83,21 @@
 
       <dl><dt>
 
-          <code><a href="bde_series_full_load.html">bde_series_full_load()</a></code>
+          <code><a href="bde_series.html">bde_series_load()</a></code> <code><a href="bde_series.html">bde_series_full_load()</a></code>
 
         </dt>
-        <dd>Load BdE full time series files</dd>
+        <dd>Load BdE time series from bulk CSV files</dd>
 
         <dt>
 
-          <code><a href="bde_series_load.html">bde_series_load()</a></code>
-
+          <code><a href="bde_series_api.html">bde_series_api_latest()</a></code> <code><a href="bde_series_api.html">bde_series_api_load()</a></code>
+          <span class="badge lifecycle lifecycle-experimental">experimental</span>
         </dt>
-        <dd>Load a single BdE time series</dd>
+        <dd>Load BdE time series from the Statistics web service (API)</dd>
       </dl></div><div class="section level2">
       <h2 id="selected-indicators">Selected indicators<a class="anchor" aria-label="anchor" href="#selected-indicators"></a></h2>
 
-      <div class="section-desc"><p>Convenience functions for selected Spanish macroeconomic indicators.</p></div>
+      <div class="section-desc"><p>Retrieve commonly used Spanish macroeconomic indicators.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -128,9 +118,9 @@
         </dt>
         <dd>Selected Spanish macroeconomic indicators</dd>
       </dl></div><div class="section level2">
-      <h2 id="plot-utilities">Plot utilities<a class="anchor" aria-label="anchor" href="#plot-utilities"></a></h2>
+      <h2 id="plotting">Plotting<a class="anchor" aria-label="anchor" href="#plotting"></a></h2>
 
-      <div class="section-desc"><p>BdE-inspired palettes, scales and themes for ggplot2 plots.</p></div>
+      <div class="section-desc"><p>Apply BdE-inspired palettes, scales and themes to <strong>ggplot2</strong> plots.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -156,11 +146,11 @@
           <code><a href="theme_tidybde.html">theme_tidybde()</a></code>
 
         </dt>
-        <dd>BdE ggplot2 theme</dd>
+        <dd>BdE theme for ggplot2</dd>
       </dl></div><div class="section level2">
       <h2 id="utilities">Utilities<a class="anchor" aria-label="anchor" href="#utilities"></a></h2>
 
-      <div class="section-desc"><p>Date parsing and supporting utilities.</p></div>
+      <div class="section-desc"><p>Parse date formats used in Banco de España datasets.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -174,9 +164,9 @@
         </dt>
         <dd>Parse dates from strings</dd>
       </dl></div><div class="section level2">
-      <h2 id="about-the-package">About the package<a class="anchor" aria-label="anchor" href="#about-the-package"></a></h2>
+      <h2 id="package">Package<a class="anchor" aria-label="anchor" href="#package"></a></h2>
 
-      <div class="section-desc"><p>Package-level documentation.</p></div>
+      <div class="section-desc"><p>Learn about <strong>tidyBdE</strong> and its package-level metadata.</p></div>
 
       <dl></dl></div><div class="section level2">
 
