@@ -175,7 +175,7 @@ Time series functions:
 # \donttest{
 # Show metadata.
 bde_series_load(573234, verbose = TRUE, extract_metadata = TRUE)
-#> ℹ Using temporary cache directory /tmp/RtmpAoTqim.
+#> ℹ Using temporary cache directory /tmp/RtmpPbMZyh.
 #> ✔ Using cached catalog "BE".
 #> ✔ Using cached catalog "SI".
 #> ✔ Using cached catalog "TC".
@@ -184,7 +184,7 @@ bde_series_load(573234, verbose = TRUE, extract_metadata = TRUE)
 #> ℹ Parsing date columns.
 #> ℹ Extracting series 573234.
 #> ℹ Downloading series 573234 from file TC_1_1.csv (alias "TC_1_1.1").
-#> ℹ Using temporary cache directory /tmp/RtmpAoTqim/TC.
+#> ℹ Using temporary cache directory /tmp/RtmpPbMZyh/TC.
 #> ℹ Downloading file from <https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/tc_1_1.csv>.
 #> # A tibble: 6 × 2
 #>   Date                        `573234`                                          
@@ -192,13 +192,13 @@ bde_series_load(573234, verbose = TRUE, extract_metadata = TRUE)
 #> 1 CÓDIGO DE LA SERIE          DTCCBCEUSDEUR.B                                   
 #> 2 NÚMERO SECUENCIAL           573234                                            
 #> 3 ALIAS DE LA SERIE           TC_1_1.1                                          
-#> 4 DESCRIPCIÓN DE LA SERIE     Tipo de cambio. Dólares estadounidenses por euro …
+#> 4 DESCRIPCIÓN DE LA SERIE     Tipos de cambio. Dólares estadounidenses por euro…
 #> 5 DESCRIPCIÓN DE LAS UNIDADES Dólares de Estados Unidos por Euro                
 #> 6 FRECUENCIA                  LABORABLE                                         
 
 # Load data.
 bde_series_load(573234, extract_metadata = FALSE)
-#> # A tibble: 7,182 × 2
+#> # A tibble: 7,204 × 2
 #>    Date       `573234`
 #>    <date>        <dbl>
 #>  1 1999-01-04     1.18
@@ -211,7 +211,7 @@ bde_series_load(573234, extract_metadata = FALSE)
 #>  8 1999-01-13     1.17
 #>  9 1999-01-14     1.17
 #> 10 1999-01-15     1.16
-#> # ℹ 7,172 more rows
+#> # ℹ 7,194 more rows
 
 # Load multiple series.
 bde_series_load(c(573234, 573214),
@@ -224,7 +224,7 @@ bde_series_load(c(573234, 573214),
 #> 1 CÓDIGO DE LA SERIE          DTCCBCEUSDEUR.B                          DTCCBCEG…
 #> 2 NÚMERO SECUENCIAL           573234                                   573214   
 #> 3 ALIAS DE LA SERIE           TC_1_1.1                                 TC_1_1.4 
-#> 4 DESCRIPCIÓN DE LA SERIE     Tipo de cambio. Dólares estadounidenses… Tipo de …
+#> 4 DESCRIPCIÓN DE LA SERIE     Tipos de cambio. Dólares estadounidense… Tipos de…
 #> 5 DESCRIPCIÓN DE LAS UNIDADES Dólares de Estados Unidos por Euro       Libras e…
 #> 6 FRECUENCIA                  LABORABLE                                LABORABLE
 
@@ -234,7 +234,7 @@ wide <- bde_series_load(c(573234, 573214),
 
 # Show wide output.
 wide
-#> # A tibble: 7,182 × 3
+#> # A tibble: 7,204 × 3
 #>    Date       `US/EUR` `GBP/EUR`
 #>    <date>        <dbl>     <dbl>
 #>  1 1999-01-04     1.18     0.711
@@ -247,7 +247,7 @@ wide
 #>  8 1999-01-13     1.17     0.708
 #>  9 1999-01-14     1.17     0.706
 #> 10 1999-01-15     1.16     0.704
-#> # ℹ 7,172 more rows
+#> # ℹ 7,194 more rows
 
 # Show long output.
 long <- bde_series_load(c(573234, 573214),
@@ -256,7 +256,7 @@ long <- bde_series_load(c(573234, 573214),
 )
 
 long
-#> # A tibble: 14,364 × 3
+#> # A tibble: 14,408 × 3
 #>    Date       serie_name serie_value
 #>    <date>     <fct>            <dbl>
 #>  1 1999-01-04 US/EUR            1.18
@@ -269,7 +269,7 @@ long
 #>  8 1999-01-13 US/EUR            1.17
 #>  9 1999-01-14 US/EUR            1.17
 #> 10 1999-01-15 US/EUR            1.16
-#> # ℹ 14,354 more rows
+#> # ℹ 14,398 more rows
 
 # Use with ggplot2.
 library(ggplot2)
@@ -288,13 +288,13 @@ bde_series_full_load("TI_1_1.csv", extract_metadata = TRUE)
 #> 1 CÓDIGO DE LA SERIE          D_DTFK09A0              D_DTFK0… D_DNBCE… D_DNBCE…
 #> 2 NÚMERO SECUENCIAL           4562340                 4562341  4573260  4573259 
 #> 3 ALIAS DE LA SERIE           TI_1_1.1                TI_1_1.2 TI_1_1.3 TI_1_1.4
-#> 4 DESCRIPCIÓN DE LA SERIE     Tipo de interés. Opera… Tipos d… Tipo de… Tipo de…
+#> 4 DESCRIPCIÓN DE LA SERIE     Tipos de interés. Oper… Tipos d… Tipos d… Tipos d…
 #> 5 DESCRIPCIÓN DE LAS UNIDADES Porcentaje              Porcent… Porcent… Porcent…
 #> 6 FRECUENCIA                  LABORABLE               LABORAB… LABORAB… LABORAB…
 
 # Load a complete bulk CSV file.
 bde_series_full_load("TI_1_1.csv")
-#> # A tibble: 7,183 × 5
+#> # A tibble: 7,205 × 5
 #>    Date       TI_1_1.1 TI_1_1.2 TI_1_1.3 TI_1_1.4
 #>    <date>        <dbl>    <dbl>    <dbl>    <dbl>
 #>  1 1999-01-01        3       NA     4.5      2   
@@ -307,6 +307,6 @@ bde_series_full_load("TI_1_1.csv")
 #>  8 1999-01-12        3       NA     3.25     2.75
 #>  9 1999-01-13        3       NA     3.25     2.75
 #> 10 1999-01-14        3       NA     3.25     2.75
-#> # ℹ 7,173 more rows
+#> # ℹ 7,195 more rows
 # }
 ```
