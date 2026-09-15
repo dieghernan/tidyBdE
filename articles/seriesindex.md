@@ -1,7 +1,7 @@
 # Series index
 
 This article lists time series available in Banco de España catalog
-metadata. Last updated: **15-August-2026**.
+metadata. Last updated: **15-September-2026**.
 
 Use the stable sequential number (`Numero_secuencial`) to load a time
 series from bulk CSV files, as shown in the example. Use
@@ -31,8 +31,8 @@ fr |>
 
 | Numero_secuencial | Descripcion_de_la_serie |
 |:---|:---|
-| 2563958 | Economía internacional. Francia. AAPP. SEC2010. Capacidad (+) o necesidad (-) de financiación. Acum. 4 últimos trim. En % PIB pm |
-| 2563918 | Economía internacional. Francia. PDE (SEC2010). AAPP. Deuda PDE. En % PIB pm |
+| 2563958 | Economía internacional. Francia. AAPP. SEC 2010. Capacidad (+) o necesidad (-) de financiación. Acumulado en los últimos 4 trimestres. En porcentaje del PIBpm |
+| 2563918 | Economía internacional. Francia. PDE (SEC 2010). AAPP. Deuda PDE. En porcentaje del PIBpm |
 
 Table 1: Search results
 
@@ -48,7 +48,7 @@ fr |>
   as.double() |>
   # Load the time series.
   bde_series_load()
-#> # A tibble: 121 × 2
+#> # A tibble: 122 × 2
 #>    Date       `2563958`
 #>    <date>         <dbl>
 #>  1 1995-12-01      -5.1
@@ -61,7 +61,7 @@ fr |>
 #>  8 1997-09-01      NA  
 #>  9 1997-12-01      -3.6
 #> 10 1998-03-01      NA  
-#> # ℹ 111 more rows
+#> # ℹ 112 more rows
 
 # Show the series metadata.
 fr |>
@@ -82,7 +82,7 @@ fr |>
 | CÓDIGO DE LA SERIE | DTNSEC2010_S0000P_APU_FR |
 | NÚMERO SECUENCIAL | 2563958 |
 | ALIAS DE LA SERIE | BE_1_6.9 |
-| DESCRIPCIÓN DE LA SERIE | Economía internacional. Francia. AAPP. SEC2010. Capacidad (+) o necesidad (-) de financiación. Acum. 4 últimos trim. En % PIB pm |
+| DESCRIPCIÓN DE LA SERIE | Economía internacional. Francia. AAPP. SEC 2010. Capacidad (+) o necesidad (-) de financiación. Acumulado en los últimos 4 trimestres. En porcentaje del PIBpm |
 | DESCRIPCIÓN DE LAS UNIDADES | Porcentaje |
 | FRECUENCIA | TRIMESTRAL |
 

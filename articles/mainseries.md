@@ -3,7 +3,7 @@
 This article presents selected Spanish macroeconomic indicators
 retrieved from Banco de España bulk CSV files.
 
-Last updated: **15-August-2026**.
+Last updated: **15-September-2026**.
 
 ``` r
 
