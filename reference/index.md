@@ -2,7 +2,7 @@
 
 ## Catalog metadata
 
-Discover, load and update Banco de España time series metadata.
+Discover, load and update Banco de España time series catalog metadata.
 
 - [`bde_catalog_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_catalogs.md)
   [`bde_catalog_update()`](https://ropenspain.github.io/tidyBdE/reference/bde_catalogs.md)
@@ -12,7 +12,7 @@ Discover, load and update Banco de España time series metadata.
 ## Time series
 
 Retrieve time series from bulk CSV files or the Statistics web service
-using stable sequential numbers or API series codes.
+(API) using stable sequential numbers or API series codes.
 
 - [`bde_series_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series.md)
   [`bde_series_full_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series.md)
@@ -22,9 +22,10 @@ using stable sequential numbers or API series codes.
   **\[experimental\]** : Load BdE time series from the Statistics web
   service (API)
 
-## Selected indicators
+## Selected indicators and metadata
 
-Retrieve commonly used Spanish macroeconomic indicators.
+Retrieve commonly used Spanish macroeconomic indicators and inspect
+their bundled series metadata.
 
 - [`bde_ind_db`](https://ropenspain.github.io/tidyBdE/reference/bde_ind_db.md)
   : Database of selected Spanish macroeconomic indicators
@@ -45,24 +46,28 @@ Apply BdE-inspired palettes, scales and themes to **ggplot2** plots.
 
 - [`bde_tidy_palettes()`](https://ropenspain.github.io/tidyBdE/reference/bde_tidy_palettes.md)
   : BdE color palettes
+
 - [`scale_color_bde_d()`](https://ropenspain.github.io/tidyBdE/reference/scales_bde.md)
   [`scale_fill_bde_d()`](https://ropenspain.github.io/tidyBdE/reference/scales_bde.md)
   [`scale_color_bde_c()`](https://ropenspain.github.io/tidyBdE/reference/scales_bde.md)
   [`scale_fill_bde_c()`](https://ropenspain.github.io/tidyBdE/reference/scales_bde.md)
   : BdE color scales
+
 - [`theme_tidybde()`](https://ropenspain.github.io/tidyBdE/reference/theme_tidybde.md)
-  : BdE theme for ggplot2
+  :
+
+  BdE theme for [ggplot2](https://CRAN.R-project.org/package=ggplot2)
 
 ## Utilities
 
 Parse date formats used in Banco de España datasets.
 
 - [`bde_parse_dates()`](https://ropenspain.github.io/tidyBdE/reference/bde_parse_dates.md)
-  : Parse dates from strings
+  : Parse date strings
 
 ## Package
 
-Learn about **tidyBdE** and its package-level metadata.
+Learn about the **tidyBdE** package and its metadata.
 
 - [`tidyBdE`](https://ropenspain.github.io/tidyBdE/reference/tidyBdE-package.md)
   [`tidyBdE-package`](https://ropenspain.github.io/tidyBdE/reference/tidyBdE-package.md)

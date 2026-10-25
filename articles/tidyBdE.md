@@ -3,13 +3,13 @@
 **tidyBdE** is an **R** package that retrieves time series data from
 [Banco de
 España](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.html)
-bulk CSV files and the [Statistics web service
-(API)](https://www.bde.es/webbe/en/estadisticas/recursos/api-estadisticas-bde.html).
+bulk CSV files and the [**Statistics web service
+(API)**](https://www.bde.es/webbe/en/estadisticas/recursos/api-estadisticas-bde.html).
 Data are returned as [**tibble**](https://tibble.tidyverse.org/)
 objects. The package infers date, character and numeric column types
-where possible. Bulk CSV helpers identify series with stable sequential
-numbers (`Numero_secuencial`), while API helpers use
-`Nombre_de_la_serie` as the API series code.
+where possible. Bulk CSV functions use stable sequential numbers
+(`Numero_secuencial`), while API functions use API series codes
+(`Nombre_de_la_serie`).
 
 ## Search for time series
 
@@ -17,7 +17,7 @@ Banco de España (**BdE**) publishes numerous time series produced by the
 institution or compiled from other sources, such as
 [Eurostat](https://ec.europa.eu/eurostat) or [INE](https://www.ine.es/).
 
-The basic entry point for discovering time series is catalog metadata.
+Catalog metadata is the main entry point for discovering time series.
 You can search for time series by name:
 
 ``` r
@@ -37,17 +37,16 @@ xr_gbp |>
   knitr::kable()
 ```
 
-| Numero_secuencial | Descripcion_de_la_serie |
-|---:|:---|
-| 573214 | Tipo de cambio. Libras esterlinas por euro (GBP/EUR).Datos diarios |
+| Numero_secuencial | Descripcion_de_la_serie                               |
+|------------------:|:------------------------------------------------------|
+|            573214 | Tipos de cambio. Libras esterlinas por euro (GBP/EUR) |
 
 Table 1: Search results
 
 **Note:** BdE catalog metadata is currently available in Spanish only,
-so search terms must be in Spanish to retrieve results. Banco de España
-is working on an English version.
+so search terms must be in Spanish to retrieve results.
 
-After finding a time series, load the GBP/EUR exchange rate from bulk
+After you find a time series, load the EUR/GBP exchange rate from bulk
 CSV files using its stable sequential number (`Numero_secuencial`):
 
 ``` r
@@ -86,7 +85,7 @@ time_series
 
 ## Plot time series
 
-The package also provides a custom **ggplot2** theme based on BdE
+**tidyBdE** provides a custom **ggplot2** theme based on BdE
 publications:
 
 ``` r
@@ -112,13 +111,17 @@ ggplot(time_series, aes(x = Date, y = EUR_GBP_XR)) +
   theme_tidybde()
 ```
 
-![Figure 1: EUR/GBP exchange rate (2010-2020)](./chart-1.png)
+![Line chart with dates on the horizontal axis and pounds sterling per
+euro on the vertical axis. The blue exchange-rate series falls to about
+0.70 in 2015, then rises above 0.85 after mid-2016. A rose-colored
+smooth trend with a shaded uncertainty band overlays the series. A
+dotted vertical line marks the Brexit referendum on June 23, 2016.
+](./chart-1.png)
 
 Figure 1: EUR/GBP exchange rate (2010-2020)
 
-The package also provides convenience functions for selected Spanish
-macroeconomic indicators, so you do not need to search for them
-manually:
+Convenience functions retrieve selected Spanish macroeconomic
+indicators, so you do not need to search for them manually:
 
 ``` r
 
@@ -139,25 +142,29 @@ ggplot(plotseries, aes(x = Date, y = serie_value)) +
     caption = "Source: BdE"
   ) +
   theme_tidybde() +
-  scale_color_bde_d(palette = "bde_vivid_pal") # Use a custom package palette.
+  scale_color_bde_d(palette = "bde_vivid_pal") # Use a tidyBdE palette.
 ```
 
-![Figure 2: Spanish economic indicators
-(2010-2019)](./macroseries-1.png)
+![Line chart with dates on the horizontal axis and percentages on the
+vertical axis. The blue line represents year-on-year GDP growth and the
+rose line represents the unemployment rate in Spain. Unemployment peaks
+near 27% in 2013, then declines to about 14% by 2019. GDP growth turns
+negative around 2011-2013 and returns to positive values from
+2014.](./macroseries-1.png)
 
 Figure 2: Spanish economic indicators (2010-2019)
 
-## A note on caching
+## Caching
 
-Create a local cache by setting the following option:
+Set the `bde_cache_dir` option to create a local cache:
 
 ``` r
 
 options(bde_cache_dir = "./path/to/location")
 ```
 
-When this option is set, **tidyBdE** looks for cached bulk CSV files in
-the `bde_cache_dir` directory and loads them to speed up data retrieval.
+When this option is set, **tidyBdE** uses bulk CSV files cached in the
+`bde_cache_dir` directory to speed up data retrieval.
 
 Update cached data after monthly or quarterly releases with the
 following commands:

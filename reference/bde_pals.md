@@ -2,7 +2,7 @@
 
 **\[superseded\]**
 
-These palettes are superseded. Use
+These palettes have been superseded. Use
 [`bde_tidy_palettes()`](https://ropenspain.github.io/tidyBdE/reference/bde_tidy_palettes.md)
 instead.
 
@@ -22,7 +22,7 @@ bde_rose_pal(...)
 
 ## Value
 
-A color palette function.
+A color palette [function](https://rdrr.io/r/base/function.html).
 
 ## Examples
 

@@ -29,15 +29,15 @@ bde_catalog_search(pattern, ...)
 
 ## Source
 
-[Time series bulk data
+[Banco de España time series bulk data
 download](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.html).
 
 ## Arguments
 
 - catalog:
 
-  A single catalog identifier or `"ALL"` to load or update every
-  catalog. See **Details**.
+  A catalog identifier or `"ALL"` to load or update every catalog. See
+  **Details**.
 
 - parse_dates:
 
@@ -55,7 +55,7 @@ download](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.
 
 - verbose:
 
-  Logical. If `TRUE`, display information useful for debugging.
+  Logical. If `TRUE`, display informative messages.
 
 - pattern:
 
@@ -63,7 +63,7 @@ download](https://www.bde.es/webbe/en/estadisticas/recursos/descargas-completas.
 
 - ...:
 
-  Additional arguments passed by `bde_catalog_search()` to
+  Additional arguments passed from `bde_catalog_search()` to
   `bde_catalog_load()`.
 
 ## Value
@@ -74,7 +74,8 @@ the requested time series catalog metadata. See
 [`vignette("csv_manual", package = "tidyBdE")`](https://ropenspain.github.io/tidyBdE/articles/csv_manual.md)
 for details.
 
-`bde_catalog_update()` returns an invisible list of download results.
+`bde_catalog_update()` returns a
+[list](https://rdrr.io/r/base/list.html) of download results, invisibly.
 
 `bde_catalog_search()` returns a
 [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html) with
@@ -109,25 +110,20 @@ expressions](https://rdrr.io/r/base/regex.html) to broaden the search.
 
 ## See also
 
-[`bde_series_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series.md)
-and
-[`bde_series_full_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series.md)
-for loading bulk CSV series and
-[`bde_series_api_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
-and
-[`bde_series_api_latest()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
-for retrieving series through the Statistics web service.
+Time series functions:
+[`bde_series`](https://ropenspain.github.io/tidyBdE/reference/bde_series.md),
+[`bde_series_api`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
 
 ## Examples
 
 ``` r
 # \donttest{
 bde_catalog_load("TI", verbose = TRUE)
-#> ℹ Using temporary cache directory /tmp/RtmpMfjln3.
+#> ℹ Using temporary cache directory /tmp/Rtmp6kmdtq.
 #> ℹ Downloading catalog "TI".
-#> ✔ Using cache directory /tmp/RtmpMfjln3.
+#> ✔ Using cache directory /tmp/Rtmp6kmdtq.
 #> ℹ Updating 1 catalog file: "TI".
-#> ℹ Downloading file from <https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/catalogo_ti.csv>.
+#> ℹ Downloading catalogo_ti.csv.
 #> ℹ Parsing date columns.
 #> # A tibble: 49 × 17
 #>    Nombre_de_la_serie Numero_secuencial Alias_de_la_serie Nombre_del_archivo_c…¹
@@ -151,7 +147,7 @@ bde_catalog_load("TI", verbose = TRUE)
 #> #   Fecha_de_la_ultima_observacion <date>, Numero_de_observaciones <dbl>, …
 
 # Simple search. Search terms must be in Spanish.
-# PIB [es] == GDP [en].
+# PIB is the Spanish equivalent of GDP.
 bde_catalog_search("PIB")
 #> # A tibble: 418 × 17
 #>    Nombre_de_la_serie Numero_secuencial Alias_de_la_serie Nombre_del_archivo_c…¹
@@ -209,8 +205,8 @@ bde_catalog_search("Francia(.*)PIB|Italia(.*)PIB|Alemania(.*)PIB")
 #> #   Titulo_de_la_serie <chr>, Fuente <chr>, Notas <chr>
 
 bde_catalog_update("TI", verbose = TRUE)
-#> ℹ Using temporary cache directory /tmp/RtmpMfjln3.
+#> ℹ Using temporary cache directory /tmp/Rtmp6kmdtq.
 #> ℹ Updating 1 catalog file: "TI".
-#> ℹ Downloading file from <https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/catalogo_ti.csv>.
+#> ℹ Downloading catalogo_ti.csv.
 # }
 ```

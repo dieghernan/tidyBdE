@@ -1,6 +1,6 @@
-# BdE theme for ggplot2
+# BdE theme for [ggplot2](https://CRAN.R-project.org/package=ggplot2)
 
-A custom [ggplot2](https://CRAN.R-project.org/package=ggplot2) theme
+This [ggplot2](https://CRAN.R-project.org/package=ggplot2) theme is
 based on BdE publications.
 
 ## Usage
@@ -45,7 +45,8 @@ theme_tidybde(...)
 
 ## Value
 
-A [ggplot2](https://CRAN.R-project.org/package=ggplot2) theme object.
+A [ggplot2](https://CRAN.R-project.org/package=ggplot2)
+[theme](https://ggplot2.tidyverse.org/reference/theme.html) object.
 
 ## Details
 
@@ -88,7 +89,7 @@ if (nrow(series_TC) > 0) {
     labs(
       title = "Title",
       subtitle = "Some metric",
-      caption = "Bank of Spain"
+      caption = "Banco de España"
     ) +
     theme_tidybde()
 }

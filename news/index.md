@@ -1,7 +1,22 @@
 # Changelog
 
-## tidyBdE (development version)
+## tidyBdE 0.7.1
 
+CRAN release: 2026-08-25
+
+- Empty-result and download messages are now more specific, omit long
+  query URLs and avoid implying that all BdE resources are unavailable.
+- [`bde_series_api_latest()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
+  and
+  [`bde_series_api_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
+  now report malformed or incomplete API responses with clear errors.
+
+## tidyBdE 0.7.0
+
+CRAN release: 2026-07-06
+
+- The package no longer imports **tibble** directly. **tibble** return
+  types continue to be provided through **dplyr**.
 - Internal code was refactored with AI assistance to reduce duplication
   in indicator wrappers and **ggplot2** scale helpers.
 - Messages and package errors now use **cli**, with AI-assisted wording
@@ -11,21 +26,25 @@
 - Tests were refactored and expanded with local fixtures, mocks and
   snapshot updates, reaching 100% line coverage in
   [`devtools::test_coverage()`](https://devtools.r-lib.org/reference/test.html).
-- New vignette
-  [`vignette("csv_manual", package = "tidyBdE")`](https://ropenspain.github.io/tidyBdE/articles/csv_manual.md)
-  explaining the structure of Banco de España bulk CSV files, catalog
-  metadata and series identifiers
+- Added
+  [`vignette("csv_manual", package = "tidyBdE")`](https://ropenspain.github.io/tidyBdE/articles/csv_manual.md),
+  which explains the structure of Banco de España bulk CSV files,
+  catalog metadata and series identifiers
   ([\#64](https://github.com/rOpenSpain/tidyBdE/issues/64)).
-- New functions added
+- Added **Statistics web service (API)** functions
   ([\#65](https://github.com/rOpenSpain/tidyBdE/issues/65)):
   - [`bde_series_api_latest()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
     added to query the Latest Data request of the Banco de España
-    [Statistics web service
-    (API)](https://www.bde.es/webbe/en/estadisticas/recursos/api-estadisticas-bde.html).
+    [**Statistics web service
+    (API)**](https://www.bde.es/webbe/en/estadisticas/recursos/api-estadisticas-bde.html).
   - [`bde_series_api_load()`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md)
     added to query the Series List request of the Banco de España
-    Statistics web service (API), with support for wide and long output,
-    metadata extraction and time range validation.
+    **Statistics web service (API)**, with support for wide and long
+    output, metadata extraction and time-range validation.
+- [`?bde_ind_db`](https://ropenspain.github.io/tidyBdE/reference/bde_ind_db.md)
+  was updated to include the field `Nombre_de_la_serie` (API series
+  code). See
+  [`?bde_series_api`](https://ropenspain.github.io/tidyBdE/reference/bde_series_api.md).
 
 ## tidyBdE 0.6.1
 
@@ -40,7 +59,7 @@ CRAN release: 2026-05-21
 
 CRAN release: 2026-03-23
 
-- Migrate vignettes to Quarto.
+- Migrate vignettes to **Quarto**.
 - Update the sequential number used by
   [`bde_ind_cpi_var()`](https://ropenspain.github.io/tidyBdE/reference/bde_indicators.md)
   (see
@@ -51,7 +70,7 @@ CRAN release: 2026-03-23
 CRAN release: 2026-01-13
 
 - Improve documentation with AI-assisted review.
-- Update the minimum required **R** version to `4.1.0`.
+- Update the minimum required **R** version to 4.1.0.
 
 ## tidyBdE 0.4.0
 
